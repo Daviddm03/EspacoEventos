@@ -5,11 +5,11 @@ import CtaWhatsapp from '../components/home/ctaWhatsapp'
 
 export default function Home() {
   return (
-    <div>
+    <>
       <Hero />
       <ServicosResumo />
       <Depoimentos />
       <CtaWhatsapp />
-    </div>
+    </>
   )
 }
