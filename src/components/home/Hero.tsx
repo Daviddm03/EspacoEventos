@@ -2,7 +2,6 @@ import { useEffect, useState, useCallback } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { WHATSAPP_URL } from '../../lib/constants'
 
 const slides = [
   {
@@ -68,22 +67,27 @@ export default function Hero() {
 
               <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
 
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-                <h1 className="font-titulo text-5xl md:text-7xl text-branco leading-tight">
-                  {slide.titulo}
-                </h1>
-                <p className="font-titulo text-3xl md:text-5xl text-primaria mt-2">
-                  {slide.subtitulo}
-                </p>
+              <div className="absolute inset-0 flex items-center px-8 md:px-16 lg:px-24">
+                <div className="max-w-3xl">
 
-                <a
-                  href={WHATSAPP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-8 bg-primaria text-branco px-8 py-4 rounded-full text-lg font-semibold hover:opacity-80 transition-opacity"
-                >
-                  Solicitar Orçamento
-                </a>
+                  <p className="text-primaria uppercase tracking-[0.3em] text-xs md:text-sm font-semibold mb-5">
+                    Espaço Eventos
+                  </p>
+
+                  <h1 className="font-titulo text-5xl md:text-7xl lg:text-8xl text-branco leading-[0.95]">
+                    {slide.titulo}
+                    <span className="block text-primaria mt-2">
+                      {slide.subtitulo}
+                    </span>
+                  </h1>
+
+                  <div className="w-16 h-px bg-primaria mt-8" />
+
+                  <p className="text-branco/80 text-sm md:text-base max-w-md mt-6 leading-relaxed">
+                    Um espaço pensado para transformar momentos especiais em memórias inesquecíveis.
+                  </p>
+
+                </div>
               </div>
             </div>
           ))}

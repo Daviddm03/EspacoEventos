@@ -19,23 +19,24 @@ export default function Navbar() {
 
   return (
     <header className="bg-escuro shadow-md sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-8 h-24 flex items-center justify-between">
+      <div className="w-full px-6 md:px-16 lg:px-20 h-24 flex items-center">
        <Link to="/" className="flex items-center" aria-label="Espaço Eventos — página inicial">
   <img
     src="/src/assets/logo2.png"
     alt="Ícone Espaço Eventos"
-    className="h-12 w-auto object-contain"
+    className="h-13 w-auto object-contain"
   />
 </Link>
 
         {/* Desktop */}
-        <nav aria-label="Navegação principal" className="hidden lg:flex gap-10 items-center">
+        <nav aria-label="Navegação principal" className="hidden lg:flex items-center gap-10 ml-auto">
           {links.map(({ to, label }) => (
             <Link
               key={to}
               to={to}
-              className={`transition-colors text-base font-medium ${
-                isAtivo(to) ? 'text-primaria' : 'text-branco hover:text-primaria'
+              className={`relative transition-colors text-[15px] tracking-wide font-medium ${
+                isAtivo(to) ? 'text-primaria after:absolute after:-bottom-2 after:left-0 after:w-full after:h-px after:bg-primaria'
+    : 'text-branco hover:text-primaria'
               }`}
               aria-current={isAtivo(to) ? 'page' : undefined}
             >
@@ -47,7 +48,7 @@ export default function Navbar() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-primaria text-branco px-5 py-2 rounded-full font-medium hover:opacity-80 transition-opacity text-sm"
+            className="bg-primaria text-branco px-7 py-3 rounded-full font-medium text-sm tracking-wide hover:bg-primaria-escura hover:-translate-y-0.5 transition-all duration-300"
           >
             Orçamento
           </a>
@@ -55,7 +56,7 @@ export default function Navbar() {
 
         {/* Mobile toggle */}
         <button
-          className="lg:hidden text-branco p-1"
+          className="lg:hidden text-branco p-2 ml-auto"
           onClick={() => setMenuAberto(!menuAberto)}
           aria-label={menuAberto ? 'Fechar menu' : 'Abrir menu'}
           aria-expanded={menuAberto}
@@ -70,14 +71,15 @@ export default function Navbar() {
         <nav
           id="menu-mobile"
           aria-label="Navegação mobile"
-          className="md:hidden bg-escuro px-6 pb-6 flex flex-col gap-4 border-t border-branco/10"
+          className="lg:hidden bg-escuro px-6 py-6 flex flex-col gap-5 border-t border-branco/10"
         >
           {links.map(({ to, label }) => (
             <Link
               key={to}
               to={to}
-              className={`transition-colors text-sm font-medium py-1 ${
-                isAtivo(to) ? 'text-primaria' : 'text-branco hover:text-primaria'
+              className={`relative w-fit transition-colors text-base font-medium py-2 ${
+                isAtivo(to) ? 'text-primaria after:absolute after:-bottom-0.5 after:left-0 after:w-8 after:h-px after:bg-primaria'
+    : 'text-branco hover:text-primaria'
               }`}
               aria-current={isAtivo(to) ? 'page' : undefined}
               onClick={() => setMenuAberto(false)}
@@ -90,7 +92,7 @@ export default function Navbar() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-primaria text-branco px-5 py-2 rounded-full font-medium text-center hover:opacity-80 transition-opacity text-sm"
+            className="bg-primaria text-branco px-6 py-3 rounded-full font-medium text-center tracking-wide hover:bg-primaria-escura hover:-translate-y-0.5 transition-all duration-300 text-sm mt-2"
           >
             Orçamento
           </a>

@@ -22,11 +22,6 @@ export default function Servicos() {
             className={`flex flex-col md:flex-row gap-10 items-center ${
               index % 2 !== 0 ? 'md:flex-row-reverse' : ''
             }`}>
-
-            <div className="flex-none w-full md:w-64 h-64 bg-primaria/10 rounded-3xl flex items-center justify-center">
-              <servico.icone size={80} className="text-primaria" aria-hidden="true" />
-            </div>
-
             <div className="flex flex-col gap-4 flex-1">
               <h2 className="font-titulo text-3xl text-escuro">{servico.titulo}</h2>
               <p className="text-texto-suave leading-relaxed">{servico.descricao}</p>
