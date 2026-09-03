@@ -6,22 +6,22 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 const slides = [
   {
     id: 1,
-    src: '',
-    alt: '[FOTO PRINCIPAL DO ESPAÇO]',
+    src: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=2000&q=85',
+    alt: 'Salão de eventos',
     titulo: 'Celebre os momentos',
     subtitulo: 'que importam',
   },
   {
     id: 2,
-    src: '',
-    alt: '[FOTO DE FESTA NO ESPAÇO]',
+    src: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=2000&q=85',
+    alt: 'Evento no espaço',
     titulo: 'Espaço completo',
     subtitulo: 'para sua família',
   },
   {
     id: 3,
-    src: '',
-    alt: '[FOTO DA PISTA DE LED]',
+    src: 'https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=2000&q=85',
+    alt: 'Pista de dança em evento',
     titulo: 'Momentos únicos',
     subtitulo: 'para toda a vida',
   },
