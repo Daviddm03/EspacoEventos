@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { MapPin, Phone} from 'lucide-react'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { WHATSAPP_NUMBER, WHATSAPP_URL } from '../lib/constants'
+import logo from '../assets/logo2.png'
 
 export default function Footer() {
   const { pathname } = useLocation()
@@ -13,7 +14,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="flex flex-col">
           <img
-            src="/src/assets/logo2.png"
+            src={logo}
             alt="Espaço Eventos"
             className="h-12 w-auto object-contain object-left"
           />

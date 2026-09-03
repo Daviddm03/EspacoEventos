@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import { WHATSAPP_URL } from '../lib/constants'
+import logo from '../assets/logo2.png'
 
 const links = [
   { to: '/', label: 'Início' },
@@ -22,7 +23,7 @@ export default function Navbar() {
       <div className="w-full px-6 md:px-16 lg:px-20 h-24 flex items-center">
        <Link to="/" className="flex items-center" aria-label="Espaço Eventos — página inicial">
   <img
-    src="/src/assets/logo2.png"
+    src={logo}
     alt="Ícone Espaço Eventos"
     className="h-13 w-auto object-contain"
   />
