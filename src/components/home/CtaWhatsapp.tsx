@@ -11,14 +11,14 @@ export default function CtaWhatsapp() {
           Pronto para fazer uma <span className="block text-primaria italic">festa incrível?</span>
         </h2>
         <div className="w-12 h-px bg-primaria" />
-        <p className="text-texto-suave text-lg max-w-xl">
+        <p className="text-branco/70 text-lg max-w-xl">
           Entre em contato agora pelo WhatsApp e receba um orçamento personalizado para o seu evento.
         </p>
         <a
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-primaria text-branco px-10 py-4 rounded-full text-lg font-semibold hover:bg-primaria-escura hover:-translate-y-0.5 transition-all duration-300 mt-2"
+          className="bg-primaria text-escuro px-10 py-4 rounded-full text-lg font-semibold hover:bg-primaria-escura hover:-translate-y-0.5 transition-all duration-300 mt-2"
         >
           Solicitar Orçamento
         </a>

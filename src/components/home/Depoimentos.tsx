@@ -7,33 +7,26 @@ export default function Depoimentos() {
   return (
     <section className="bg-fundo-alt py-20 px-6">
       <div className="max-w-6xl mx-auto">
-
         <div className="max-w-3xl mx-auto mb-16 text-center">
-          <p className="text-primaria uppercase tracking-[0.3em] text-xs font-semibold mb-5">
+          <p className="text-primaria-texto uppercase tracking-[0.3em] text-xs font-semibold mb-5">
             Experiências reais
           </p>
-
           <h2 className="font-titulo text-4xl md:text-5xl lg:text-6xl text-escuro leading-tight">
             Momentos que ficam
-            <span className="block text-primaria italic">
+            <span className="block text-primaria-texto italic">
               na memória
             </span>
           </h2>
-
           <div className="w-12 h-px bg-primaria mx-auto my-7" />
-
           <p className="text-texto-suave text-base md:text-lg max-w-xl mx-auto leading-relaxed">
-            Cada celebração tem uma história. Em breve, você poderá conhecer
-            as experiências de quem escolheu o Espaço Eventos.
+            Conheça as experiências de quem celebrou momentos especiais no Espaço Eventos.
           </p>
         </div>
-
         {!temDepoimentos ? (
           <div className="max-w-2xl mx-auto text-center py-8">
             <p className="font-titulo text-2xl md:text-3xl text-escuro italic">
               "Cada celebração deixa uma história para contar."
             </p>
-
             <p className="text-texto-suave text-sm mt-4">
               Em breve, compartilharemos aqui as experiências dos nossos clientes.
             </p>
@@ -56,7 +49,6 @@ export default function Depoimentos() {
             ))}
           </div>
         )}
-
       </div>
     </section>
   )

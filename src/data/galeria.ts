@@ -4,7 +4,7 @@ export interface ImagemGaleria {
   id: number
   src: string
   alt: string
-  categoria: CategoriaGaleria
+  categoria: Exclude<CategoriaGaleria, 'todos'>
 }
 
 export const categoriasGaleria: { id: CategoriaGaleria; label: string }[] = [

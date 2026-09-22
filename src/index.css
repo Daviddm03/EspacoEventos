@@ -3,6 +3,7 @@
 @theme {
   --color-primaria: #f5a824;    
   --color-primaria-escura: #fcbc34;
+  --color-primaria-texto: #946000;
   --color-escuro: #2D2D2D;
   --color-fundo: #FAFAF8;   
   --color-fundo-alt: #F7F3EE;
@@ -18,4 +19,20 @@ body{
   background-color: #FAFAF8;
   color: #2D2D2D;
   font-family: "Inter", sans-serif;
+}
+
+/* Anel duplo legível em superfícies claras e escuras, apenas no foco por teclado. */
+:where(a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])):focus-visible {
+  outline: 2px solid var(--color-primaria-texto);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px var(--color-branco);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -4,13 +4,13 @@ import { WHATSAPP_URL } from '../lib/constants'
 export default function Servicos() {
   return (
     <div className="bg-fundo">
-    <div className="bg-escuro py-20 px-6 text-center">
-      <p className="text-primaria uppercase tracking-[0.3em] text-xs font-semibold mb-5">
-        Tudo para sua celebração
-      </p>
-      <h1 className="font-titulo text-5xl md:text-6xl lg:text-7xl text-branco leading-tight">
-        Nossos <span className=" text-primaria italic"> Serviços </span>
-      </h1>
+      <div className="bg-escuro py-20 px-6 text-center">
+        <p className="text-primaria uppercase tracking-[0.3em] text-xs font-semibold mb-5">
+          Tudo para sua celebração
+        </p>
+        <h1 className="font-titulo text-5xl md:text-6xl lg:text-7xl text-branco leading-tight">
+          Nossos <span className=" text-primaria italic"> Serviços </span>
+        </h1>
       <div className="w-12 h-px bg-primaria mx-auto my-7" />
       <p className="text-branco/70 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
         Tudo que você precisa para uma festa perfeita em um só lugar.
@@ -29,10 +29,11 @@ export default function Servicos() {
                 alt=""
                 className="w-full aspect-4/3 object-cover rounded-2xl"
                 loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="flex flex-col gap-4 flex-1">
-              <span className="text-primaria/60 font-mono text-sm tracking-wider">
+              <span className="text-primaria-texto font-mono text-sm tracking-wider">
                 {String(index + 1).padStart(2, '0')}
               </span>
               <h2 className="font-titulo text-3xl text-escuro">{servico.titulo}</h2>
@@ -46,39 +47,32 @@ export default function Servicos() {
                 ))}
               </ul>
             </div>
-
           </div>
         ))}
       </div>
       <div className="bg-escuro py-20 px-6 text-center">
         <div className="max-w-3xl mx-auto flex flex-col items-center">
-
           <p className="text-primaria uppercase tracking-[0.3em] text-xs font-semibold mb-5">
             Vamos conversar
           </p>
-
           <h3 className="font-titulo text-4xl md:text-5xl lg:text-6xl text-branco leading-tight">
             Pronto para transformar sua
             <span className="block text-primaria italic">
               próxima celebração?
             </span>
           </h3>
-
           <div className="w-12 h-px bg-primaria my-7" />
-
-          <p className="text-texto-suave text-base md:text-lg max-w-xl leading-relaxed mb-8">
+          <p className="text-branco/70 text-base md:text-lg max-w-xl leading-relaxed mb-8">
             Entre em contato e descubra como podemos tornar seu evento ainda mais especial.
           </p>
-
           <a
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-primaria text-branco px-10 py-4 rounded-full text-lg font-semibold hover:bg-primaria-escura hover:-translate-y-0.5 transition-all duration-300"
+            className="inline-block bg-primaria text-escuro px-10 py-4 rounded-full text-lg font-semibold hover:bg-primaria-escura hover:-translate-y-0.5 transition-all duration-300"
           >
             Falar no WhatsApp
           </a>
-
         </div>
       </div>
     </div>

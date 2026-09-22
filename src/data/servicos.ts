@@ -4,7 +4,7 @@ export interface Servico {
   resumo: string
   descricao: string
   itens: string[]
-  imagem?: string
+  imagem: string
 }
 
 export const servicos: Servico[] = [

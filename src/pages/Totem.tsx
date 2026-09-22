@@ -42,7 +42,7 @@ export default function Totem() {
         <h1 className="font-titulo text-4xl md:text-5xl text-branco">
           Totem de <span className="text-primaria">Fotos</span>
         </h1>
-        <p className="text-texto-suave mt-3 text-base max-w-md mx-auto">
+        <p className="text-branco/70 mt-3 text-base max-w-md mx-auto">
           Faça o upload da sua foto tirada no totem e guarde essa memória para sempre.
         </p>
       </div>
@@ -69,11 +69,11 @@ export default function Totem() {
                 <input
                   type="file"
                   accept="image/*"
-                  className="sr-only"
+                  className="sr-only peer"
                   onChange={handleSelecao}
                   aria-label="Selecionar foto para upload"
                 />
-                <div className="border-2 border-dashed border-primaria/30 hover:border-primaria rounded-2xl p-6 text-center transition-colors">
+                <div className="peer-focus-visible:outline-2 peer-focus-visible:outline-primaria-texto peer-focus-visible:outline-offset-4 border-2 border-dashed border-primaria/30 hover:border-primaria rounded-2xl p-6 text-center transition-colors">
                   {nomeArquivo ? (
                     <p className="text-escuro text-sm font-medium">{nomeArquivo}</p>
                   ) : (
@@ -87,12 +87,12 @@ export default function Totem() {
               {estado === 'selecionado' && (
                 <button
                   onClick={handleEnvio}
-                  className="w-full bg-primaria text-branco py-4 rounded-full font-semibold hover:opacity-80 transition-opacity">
+                  className="w-full bg-primaria text-escuro py-4 rounded-full font-semibold hover:opacity-80 transition-opacity">
                   Enviar foto
                 </button>
               )}
 
-              <p className="text-texto-suave/60 text-xs text-center">
+              <p className="text-texto-suave text-xs text-center">
                 Formatos aceitos: JPG, PNG, HEIC · Tamanho máximo: 20MB
               </p>
             </div>
@@ -118,7 +118,7 @@ export default function Totem() {
               </div>
               <button
                 onClick={resetar}
-                className="bg-primaria text-branco px-8 py-3 rounded-full font-medium hover:opacity-80 transition-opacity">
+                className="bg-primaria text-escuro px-8 py-3 rounded-full font-medium hover:opacity-80 transition-opacity">
                 Enviar outra foto
               </button>
             </div>
@@ -136,15 +136,13 @@ export default function Totem() {
               </div>
               <button
                 onClick={resetar}
-                className="border border-primaria text-primaria px-8 py-3 rounded-full font-medium hover:bg-primaria hover:text-branco transition-colors">
+                className="border border-primaria-texto text-primaria-texto px-8 py-3 rounded-full font-medium hover:bg-primaria hover:text-escuro transition-colors">
                 Tentar novamente
               </button>
             </div>
           )}
-
         </div>
       </div>
-
     </div>
   )
 }

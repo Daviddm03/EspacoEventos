@@ -19,12 +19,12 @@ export default function Sobre() {
 
       {/* Introdução */}
       <section className="max-w-4xl mx-auto px-6 py-24 text-center">
-        <p className="text-primaria uppercase tracking-[0.3em] text-xs font-semibold mb-5">
+        <p className="text-primaria-texto uppercase tracking-[0.3em] text-xs font-semibold mb-5">
           Mais que um espaço
         </p>
         <h2 className="font-titulo text-4xl md:text-5xl lg:text-6xl text-escuro leading-tight">
           Um lugar para criar
-          <span className="block text-primaria italic">
+          <span className="block text-primaria-texto italic">
             grandes momentos
           </span>
         </h2>
@@ -42,6 +42,8 @@ export default function Sobre() {
           <img
             src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=2000&q=85"
             alt="Espaço para eventos"
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500" />
@@ -55,6 +57,7 @@ export default function Sobre() {
               <img
                 src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=85"
                 alt="Celebração no Espaço Eventos"
+                decoding="async"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
               />
@@ -62,16 +65,16 @@ export default function Sobre() {
             </div>
           </div>
           <div>
-            <p className="text-primaria uppercase tracking-[0.3em] text-xs font-semibold mb-5">
+            <p className="text-primaria-texto uppercase tracking-[0.3em] text-xs font-semibold mb-5">
               Nossa história
             </p>
             <h2 className="font-titulo text-4xl md:text-5xl text-escuro leading-tight">
               Um espaço criado
-              <span className="block text-primaria italic">
+              <span className="block text-primaria-texto italic">
                 para celebrar
               </span>
             </h2>
-            <div className="w-12 h-px bg-primaria my-7" />
+          <div className="w-12 h-px bg-primaria my-7" />
             <p className="text-texto-suave leading-relaxed mb-5">
               O Espaço Eventos nasceu do desejo de criar um ambiente onde cada celebração
               pudesse ser vivida de forma especial. Desde o início, nosso propósito foi
@@ -90,12 +93,12 @@ export default function Sobre() {
       {/* Diferenciais */}
       <section className="max-w-6xl mx-auto px-6 py-20">
         <div className="max-w-3xl mx-auto text-center mb-14">
-          <p className="text-primaria uppercase tracking-[0.3em] text-xs font-semibold mb-5">
+          <p className="text-primaria-texto uppercase tracking-[0.3em] text-xs font-semibold mb-5">
             O que nos diferencia
           </p>
           <h2 className="font-titulo text-4xl md:text-5xl lg:text-6xl text-escuro leading-tight">
             Mais que um espaço,
-            <span className="block text-primaria italic">
+            <span className="block text-primaria-texto italic">
               uma experiência
             </span>
           </h2>
@@ -120,7 +123,7 @@ export default function Sobre() {
               key={item.titulo}
               className="group bg-branco rounded-2xl p-8 min-h-60 border border-escuro/5 hover:-translate-y-1 hover:shadow-xl transition-all duration-500 flex flex-col"
             >
-              <span className="text-primaria/60 font-mono text-sm tracking-wider mb-8">
+              <span className="text-primaria-texto font-mono text-sm tracking-wider mb-8">
                 {String(index + 1).padStart(2, '0')}
               </span>
               <h3 className="font-titulo text-2xl text-escuro">
@@ -149,14 +152,14 @@ export default function Sobre() {
             </span>
           </h3>
           <div className="w-12 h-px bg-primaria my-7" />
-          <p className="text-texto-suave text-base md:text-lg max-w-xl leading-relaxed mb-8">
+          <p className="text-branco/70 text-base md:text-lg max-w-xl leading-relaxed mb-8">
             Entre em contato e descubra como podemos tornar seu evento ainda mais especial.
           </p>
           <a
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-primaria text-branco px-10 py-4 rounded-full text-lg font-semibold hover:bg-primaria-escura hover:-translate-y-0.5 transition-all duration-300"
+            className="inline-block bg-primaria text-escuro px-10 py-4 rounded-full text-lg font-semibold hover:bg-primaria-escura hover:-translate-y-0.5 transition-all duration-300"
           >
             Falar no WhatsApp
           </a>
