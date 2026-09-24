@@ -1,148 +1,68 @@
-import { useState } from 'react'
-import { Camera, Upload, CheckCircle, AlertCircle } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { Upload, AlertCircle, ArrowUpRight } from 'lucide-react'
+import PageHeader from '../components/PageHeader'
+import { imagensGaleria } from '../data/galeria'
+import { WHATSAPP_URL } from '../lib/constants'
 
-type EstadoUpload = 'idle' | 'selecionado' | 'enviando' | 'sucesso' | 'erro'
+type EstadoUpload = 'idle' | 'selecionado' | 'enviando' | 'erro'
 
 export default function Totem() {
   const [estado, setEstado] = useState<EstadoUpload>('idle')
   const [nomeArquivo, setNomeArquivo] = useState<string | null>(null)
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const headingRef = useRef<HTMLHeadingElement>(null)
 
-  const handleSelecao = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const arquivo = e.target.files?.[0]
+  useEffect(() => () => { if (timerRef.current) clearTimeout(timerRef.current) }, [])
+  useEffect(() => { if (estado === 'erro') headingRef.current?.focus() }, [estado])
+
+  const handleSelecao = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const arquivo = event.target.files?.[0]
     if (!arquivo) return
     setNomeArquivo(arquivo.name)
     setEstado('selecionado')
   }
-
   const handleEnvio = () => {
-    // TODO: Conectar ao backend/storage real aqui.
-    // O envio real da foto deve ser implementado quando
-    // o serviço de armazenamento (ex: Supabase, S3, Firebase)
-    // estiver configurado.
+    // O fluxo existente é informativo; não há backend de upload configurado.
     setEstado('enviando')
-    setTimeout(() => {
-      // Simulação removida — exibe mensagem informativa
-      setEstado('erro')
-    }, 1000)
-  }
-
-  const resetar = () => {
-    setEstado('idle')
-    setNomeArquivo(null)
+    timerRef.current = setTimeout(() => setEstado('erro'), 1000)
   }
 
   return (
-    <div className="bg-fundo min-h-screen flex flex-col">
-
-      {/* Header */}
-      <div className="bg-escuro py-12 px-6 text-center">
-        <div className="flex justify-center mb-4">
-          <Camera size={48} className="text-primaria" aria-hidden="true" />
+    <>
+      <PageHeader eyebrow="Guarde essa memória" description="Sua foto tirada no totem, uma lembrança da celebração." image={imagensGaleria[9].src} caption="Totem de fotos · Espaço Eventos">
+        Totem de <em className="block">fotos.</em>
+      </PageHeader>
+      <section className="site-container section-space totem-layout">
+        <div>
+          <p className="eyebrow mb-6">Os momentos ficam</p>
+          <h2 className="section-heading">Uma lembrança <em className="block">para guardar.</em></h2>
+          <p className="body-copy mt-8">Selecione a foto que você tirou no totem para fazer o upload.</p>
+          <p className="upload-notice">O envio de fotos será disponibilizado em breve. Em caso de dúvidas, fale com a equipe do espaço.</p>
+          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="editorial-link mt-6">Falar com a equipe <ArrowUpRight aria-hidden="true" /></a>
         </div>
-        <h1 className="font-titulo text-4xl md:text-5xl text-branco">
-          Totem de <span className="text-primaria">Fotos</span>
-        </h1>
-        <p className="text-branco/70 mt-3 text-base max-w-md mx-auto">
-          Faça o upload da sua foto tirada no totem e guarde essa memória para sempre.
-        </p>
-      </div>
-
-      {/* Conteúdo */}
-      <div className="flex-1 flex items-center justify-center px-6 py-16">
-        <div className="w-full max-w-md">
-
-          {/* Idle / Selecionado */}
-          {(estado === 'idle' || estado === 'selecionado') && (
-            <div className="bg-branco rounded-3xl p-8 shadow-sm flex flex-col items-center gap-6">
-              <div className="w-20 h-20 bg-primaria/10 rounded-full flex items-center justify-center">
-                <Upload size={36} className="text-primaria" aria-hidden="true" />
-              </div>
-
-              <div className="text-center">
-                <h2 className="font-titulo text-2xl text-escuro mb-2">Enviar minha foto</h2>
-                <p className="text-texto-suave text-sm">
-                  Selecione a foto que você tirou no totem para fazer o upload.
-                </p>
-              </div>
-
-              <label className="w-full cursor-pointer">
-                <input
-                  type="file"
-                  accept="image/*"
-                  className="sr-only peer"
-                  onChange={handleSelecao}
-                  aria-label="Selecionar foto para upload"
-                />
-                <div className="peer-focus-visible:outline-2 peer-focus-visible:outline-primaria-texto peer-focus-visible:outline-offset-4 border-2 border-dashed border-primaria/30 hover:border-primaria rounded-2xl p-6 text-center transition-colors">
-                  {nomeArquivo ? (
-                    <p className="text-escuro text-sm font-medium">{nomeArquivo}</p>
-                  ) : (
-                    <p className="text-texto-suave text-sm">
-                      Clique para selecionar uma foto
-                    </p>
-                  )}
-                </div>
-              </label>
-
-              {estado === 'selecionado' && (
-                <button
-                  onClick={handleEnvio}
-                  className="w-full bg-primaria text-escuro py-4 rounded-full font-semibold hover:opacity-80 transition-opacity">
-                  Enviar foto
-                </button>
-              )}
-
-              <p className="text-texto-suave text-xs text-center">
-                Formatos aceitos: JPG, PNG, HEIC · Tamanho máximo: 20MB
-              </p>
-            </div>
-          )}
-
-          {/* Enviando */}
-          {estado === 'enviando' && (
-            <div className="bg-branco rounded-3xl p-8 shadow-sm flex flex-col items-center gap-6 text-center">
-              <div className="w-16 h-16 border-4 border-primaria border-t-transparent rounded-full animate-spin" aria-label="Enviando..." />
-              <p className="text-escuro font-medium">Enviando sua foto...</p>
-            </div>
-          )}
-
-          {/* Sucesso */}
-          {estado === 'sucesso' && (
-            <div className="bg-branco rounded-3xl p-8 shadow-sm flex flex-col items-center gap-6 text-center">
-              <CheckCircle size={64} className="text-green-500" aria-hidden="true" />
-              <div>
-                <h2 className="font-titulo text-2xl text-escuro mb-2">Foto enviada!</h2>
-                <p className="text-texto-suave text-sm">
-                  Sua foto foi salva com sucesso. Obrigado por compartilhar esse momento!
-                </p>
-              </div>
-              <button
-                onClick={resetar}
-                className="bg-primaria text-escuro px-8 py-3 rounded-full font-medium hover:opacity-80 transition-opacity">
-                Enviar outra foto
-              </button>
-            </div>
-          )}
-
-          {/* Erro / Upload não disponível */}
-          {estado === 'erro' && (
-            <div className="bg-branco rounded-3xl p-8 shadow-sm flex flex-col items-center gap-6 text-center">
-              <AlertCircle size={64} className="text-primaria" aria-hidden="true" />
-              <div>
-                <h2 className="font-titulo text-2xl text-escuro mb-2">Upload em breve</h2>
-                <p className="text-texto-suave text-sm">
-                  O envio de fotos será disponibilizado em breve. Em caso de dúvidas, fale com a equipe do espaço.
-                </p>
-              </div>
-              <button
-                onClick={resetar}
-                className="border border-primaria-texto text-primaria-texto px-8 py-3 rounded-full font-medium hover:bg-primaria hover:text-escuro transition-colors">
-                Tentar novamente
-              </button>
-            </div>
-          )}
+        <div className="totem-panel" aria-busy={estado === 'enviando'}>
+          {(estado === 'idle' || estado === 'selecionado') && <>
+            <h2>Enviar minha foto</h2>
+            <label className="upload-choice">
+              <input ref={inputRef} type="file" accept="image/*" className="sr-only" onChange={handleSelecao} aria-label="Selecionar foto para upload" />
+              <Upload className="mx-auto mb-5 text-primaria-texto" size={28} aria-hidden="true" />
+              <span className="upload-filename">{nomeArquivo ?? 'Clique para selecionar uma foto'}</span>
+            </label>
+            <p className="text-xs leading-relaxed text-texto-suave">Formatos aceitos: JPG, PNG, HEIC · Tamanho máximo: 20MB</p>
+            {estado === 'selecionado' && <button type="button" onClick={handleEnvio} className="button mt-6 w-full">Enviar foto <ArrowUpRight aria-hidden="true" /></button>}
+          </>}
+          <div role="status" aria-live="polite">
+            {estado === 'enviando' && <p className="body-copy py-8">Enviando sua foto…</p>}
+            {estado === 'erro' && <div>
+              <AlertCircle size={28} className="text-primaria-texto mb-6" aria-hidden="true" />
+              <h2 ref={headingRef} tabIndex={-1}>Upload em breve</h2>
+              <p className="body-copy mt-4">O envio de fotos será disponibilizado em breve. Em caso de dúvidas, fale com a equipe do espaço.</p>
+              <button type="button" className="button button-outline mt-6" onClick={() => { setEstado('idle'); setNomeArquivo(null); requestAnimationFrame(() => inputRef.current?.focus()) }}>Tentar novamente</button>
+            </div>}
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   )
 }

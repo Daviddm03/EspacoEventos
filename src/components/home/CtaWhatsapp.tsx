@@ -1,27 +1,93 @@
+import type { ReactNode } from 'react'
+
+import { ArrowUpRight } from 'lucide-react'
+
 import { WHATSAPP_URL } from '../../lib/constants'
 
-export default function CtaWhatsapp() {
+import { imagensGaleria } from '../../data/galeria'
+
+import VenueImage from '../VenueImage'
+
+import Reveal from './Reveal'
+
+type CtaWhatsappProps = {
+  eyebrow?: string
+  children?: ReactNode
+  description?: string
+  label?: string
+}
+
+export default function CtaWhatsapp({
+  eyebrow = 'Vamos celebrar',
+  children = (
+    <>
+      Pronto para fazer uma <em className="block">festa incrível?</em>
+    </>
+  ),
+  description = 'Entre em contato agora pelo WhatsApp e receba um orçamento personalizado para o seu evento.',
+  label = 'Solicitar Orçamento',
+}: CtaWhatsappProps) {
   return (
-    <section className="bg-escuro py-20 px-6">
-      <div className="max-w-3xl mx-auto text-center flex flex-col items-center gap-6">
-        <p className="text-primaria uppercase tracking-[0.3em] text-xs font-semibold">
-          Vamos celebrar
-        </p>
-        <h2 className="font-titulo text-4xl md:text-5xl lg:text-6xl text-branco leading-tight">
-          Pronto para fazer uma <span className="block text-primaria italic">festa incrível?</span>
-        </h2>
-        <div className="w-12 h-px bg-primaria" />
-        <p className="text-branco/70 text-lg max-w-xl">
-          Entre em contato agora pelo WhatsApp e receba um orçamento personalizado para o seu evento.
-        </p>
-        <a
-          href={WHATSAPP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-primaria text-escuro px-10 py-4 rounded-full text-lg font-semibold hover:bg-primaria-escura hover:-translate-y-0.5 transition-all duration-300 mt-2"
-        >
-          Solicitar Orçamento
-        </a>
+    <section
+      id="contato"
+      className="contact-section dark-section"
+      aria-labelledby="contato-heading"
+    >
+      {/* Foto de fundo */}
+      <div className="contact-photo">
+        <VenueImage
+          src={imagensGaleria[0].src}
+          sizes="100vw"
+        />
+      </div>
+
+      <div className="site-container contact-layout">
+
+        {/* Título */}
+        <div>
+          <Reveal y={20}>
+            <p className="eyebrow">
+              {eyebrow}
+            </p>
+          </Reveal>
+
+          <Reveal y={42} delay={0.08}>
+            <h2
+              id="contato-heading"
+              className="section-heading"
+            >
+              {children}
+            </h2>
+          </Reveal>
+        </div>
+
+        {/* Conteúdo */}
+        <div>
+          <Reveal y={26} delay={0.12}>
+            <p className="body-copy">
+              {description}
+            </p>
+          </Reveal>
+
+          <Reveal y={26} delay={0.18}>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="button"
+            >
+              {label}
+
+              <ArrowUpRight aria-hidden="true" />
+            </a>
+          </Reveal>
+
+          <Reveal y={18} delay={0.24}>
+            <p className="contact-note">
+              Seu próximo momento começa aqui.
+            </p>
+          </Reveal>
+        </div>
       </div>
     </section>
   )

@@ -1,212 +1,278 @@
-import { useEffect, useRef, useState, useCallback } from 'react'
-import useEmblaCarousel from 'embla-carousel-react'
-import Autoplay from 'embla-carousel-autoplay'
-import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react'
+﻿import { useLayoutEffect, useRef } from 'react'
 
-const slides = [
-  {
-    id: 1,
-    src: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=2000&q=85',
-    alt: 'Salão de eventos',
-    titulo: 'Celebre os momentos',
-    subtitulo: 'que importam',
-  },
-  {
-    id: 2,
-    src: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=2000&q=85',
-    alt: 'Evento no espaço',
-    titulo: 'Espaço completo',
-    subtitulo: 'para sua família',
-  },
-  {
-    id: 3,
-    src: 'https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=2000&q=85',
-    alt: 'Pista de dança em evento',
-    titulo: 'Momentos únicos',
-    subtitulo: 'para toda a vida',
-  },
-]
+import gsap from 'gsap'
 
-const PLACEHOLDER_BG = 'bg-escuro'
+import { Link } from 'react-router-dom'
+
+import HeroVideo from './HeroVideo'
+
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 export default function Hero() {
-  const [autoplay] = useState(() => Autoplay({
-    delay: 5000,
-    playOnInit: false,
-    stopOnInteraction: true,
-  }))
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [autoplay])
-  const [slideAtual, setSlideAtual] = useState(0)
-  const [rotacaoAtiva, setRotacaoAtiva] = useState(true)
-  const rotacaoNoToqueRef = useRef<boolean | null>(null)
-  const [movimentoReduzido, setMovimentoReduzido] = useState(
-    () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  )
+  const heroRef = useRef<HTMLElement>(null)
 
-  const pausar = useCallback(() => {
-    autoplay.stop()
-    setRotacaoAtiva(false)
-  }, [autoplay])
+  useLayoutEffect(() => {
+    const hero = heroRef.current
 
-  useEffect(() => {
-    const preferencia = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const atualizar = () => {
-      setMovimentoReduzido(preferencia.matches)
-      pausar()
-    }
-    preferencia.addEventListener('change', atualizar)
-    return () => preferencia.removeEventListener('change', atualizar)
-  }, [pausar])
+    if (!hero) return
 
-  useEffect(() => {
-    if (!emblaApi) return
-    const selecionar = () => setSlideAtual(emblaApi.selectedScrollSnap())
-    const controlarRotacao = () => {
-      if (rotacaoAtiva && !movimentoReduzido) autoplay.play()
-      else autoplay.stop()
-    }
-    const reiniciar = () => {
-      selecionar()
-      // O Embla reinstala seus listeners no reInit; aplica nossa política depois.
-      document.removeEventListener('visibilitychange', aoVoltarParaAba)
-      document.addEventListener('visibilitychange', aoVoltarParaAba)
-      controlarRotacao()
-    }
-    // Revalida a preferência se ela mudar enquanto a aba estiver oculta.
-    const aoVoltarParaAba = () => {
-      if (!document.hidden) controlarRotacao()
-    }
-    document.addEventListener('visibilitychange', aoVoltarParaAba)
-    emblaApi.on('select', selecionar)
-    emblaApi.on('reInit', reiniciar)
-    emblaApi.on('pointerDown', pausar)
-    controlarRotacao()
+    const media = gsap.matchMedia()
+
+    media.add('(prefers-reduced-motion: no-preference)', () => {
+  const eyebrow = hero.querySelector('[data-hero="eyebrow"]')
+  const titlePrimary = hero.querySelector('[data-hero="title-primary"]')
+  const titleAccent = hero.querySelector('[data-hero="title-accent"]')
+  const description = hero.querySelector('[data-hero="description"]')
+  const primaryCta = hero.querySelector('[data-hero="cta-primary"]')
+  const secondaryCta = hero.querySelector('[data-hero="cta-secondary"]')
+  const scroll = hero.querySelector('[data-hero="scroll"]')
+
+  const timeline = gsap.timeline({
+    paused: true,
+    defaults: {
+      ease: 'power3.out',
+    },
+  })
+
+  timeline
+    .fromTo(
+      eyebrow,
+      {
+        opacity: 0,
+        y: 12,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.55,
+      },
+      0.1,
+    )
+
+    .fromTo(
+      titlePrimary,
+      {
+        opacity: 0,
+        y: 32,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.85,
+        ease: 'power4.out',
+      },
+      0.2,
+    )
+
+    .fromTo(
+      titleAccent,
+      {
+        opacity: 0,
+        y: 36,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.9,
+        ease: 'power4.out',
+      },
+      0.32,
+    )
+
+    .fromTo(
+      description,
+      {
+        opacity: 0,
+        y: 18,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.65,
+      },
+      0.5,
+    )
+
+    .fromTo(
+      [primaryCta, secondaryCta],
+      {
+        opacity: 0,
+        y: 18,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.08,
+      },
+      0.62,
+    )
+
+    .fromTo(
+      scroll,
+      {
+        opacity: 0,
+        y: -10,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+      },
+      0.88,
+    )
+
+  const trigger = ScrollTrigger.create({
+    trigger: hero,
+
+    start: 'top 80%',
+    end: 'bottom 20%',
+
+    onEnter: () => {
+      timeline.restart()
+    },
+
+    onEnterBack: () => {
+      timeline.restart()
+    },
+
+    onLeave: () => {
+      timeline.pause(0)
+    },
+
+    onLeaveBack: () => {
+      timeline.pause(0)
+    },
+  })
+
+  const showFocusedContent = () => {
+    timeline.progress(1)
+  }
+
+  hero.addEventListener('focusin', showFocusedContent)
+
+  return () => {
+    hero.removeEventListener('focusin', showFocusedContent)
+    trigger.kill()
+    timeline.kill()
+  }
+}, hero)
+
     return () => {
-      document.removeEventListener('visibilitychange', aoVoltarParaAba)
-      emblaApi.off('select', selecionar)
-      emblaApi.off('reInit', reiniciar)
-      emblaApi.off('pointerDown', pausar)
-      autoplay.stop()
+      media.revert()
     }
-  }, [emblaApi, autoplay, rotacaoAtiva, movimentoReduzido, pausar])
-
-  const anterior = () => {
-    pausar()
-    emblaApi?.scrollPrev(movimentoReduzido)
-  }
-  const proximo = () => {
-    pausar()
-    emblaApi?.scrollNext(movimentoReduzido)
-  }
+  }, [])
 
   return (
     <section
-      className="relative h-[90vh] overflow-hidden"
-      aria-label="Destaques do Espaço Eventos"
-      aria-roledescription="carrossel"
-      onMouseEnter={pausar}
-      onFocusCapture={pausar}
+      ref={heroRef}
+      className="hero-section relative overflow-hidden bg-escuro"
+      aria-label="Espaço Eventos"
     >
-      {/* A rotação só volta por ação explícita, conforme o padrão WAI-ARIA. */}
-      {!movimentoReduzido && (
-        <button
-          type="button"
-          onPointerDown={() => { rotacaoNoToqueRef.current = rotacaoAtiva }}
-          onPointerCancel={() => { rotacaoNoToqueRef.current = null }}
-          onClick={(event) => {
-            // O foco pausa antes do click; preserva a intenção inicial do toque.
-            const estavaAtiva = event.detail === 0 ? null : rotacaoNoToqueRef.current
-            rotacaoNoToqueRef.current = null
-            setRotacaoAtiva(ativa => !(estavaAtiva ?? ativa))
-          }}
-          aria-label={rotacaoAtiva ? 'Pausar carrossel' : 'Iniciar carrossel'}
-          className="absolute bottom-2 right-4 z-10 w-11 h-11 flex items-center justify-center bg-black/40 hover:bg-black/60 text-branco rounded-full transition-colors"
-        >
-          {rotacaoAtiva ? <Pause size={18} aria-hidden="true" /> : <Play size={18} aria-hidden="true" />}
-        </button>
-      )}
-      <div className="overflow-hidden h-full" ref={emblaRef}>
-        <div className="flex h-full" aria-live={rotacaoAtiva && !movimentoReduzido ? 'off' : 'polite'} aria-atomic="false">
-          {slides.map((slide, index) => {
-            const Heading = index === 0 ? 'h1' : 'h2'
-            return (
-            <div
-              key={slide.id}
-              className="flex-none w-full h-full relative"
-              role="group"
-              aria-roledescription="slide"
-              aria-label={`${index + 1} de ${slides.length}`}
-              aria-hidden={index !== slideAtual}
+      {/* Vídeo */}
+      <HeroVideo />
+
+      {/* Overlay geral */}
+      <div
+        className="absolute inset-0 bg-black/40"
+        aria-hidden="true"
+      />
+
+      {/* Gradiente horizontal */}
+      <div
+        className="absolute inset-0 bg-linear-to-r from-black/75 via-black/25 to-black/10"
+        aria-hidden="true"
+      />
+
+      {/* Gradiente vertical */}
+      <div
+        className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-black/20"
+        aria-hidden="true"
+      />
+
+      {/* Conteúdo */}
+      <div className="hero-content relative z-10 mx-auto flex h-full max-w-400 items-end px-6 pb-16 md:px-12 md:pb-20 lg:px-20 lg:pb-24 xl:px-24">
+        <div className="max-w-3xl">
+
+          {/* Eyebrow */}
+          <div
+            data-hero="eyebrow"
+            className="hero-eyebrow mb-6 flex items-center gap-3"
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-primaria" />
+
+            <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-branco/70 md:text-xs">
+              Espaço Eventos
+            </span>
+          </div>
+
+          {/* Título */}
+          <h1 className="font-titulo text-[3.4rem] leading-[0.95] tracking-[-0.02em] text-branco sm:text-6xl md:text-7xl lg:text-[5.5rem]">
+            <span
+              data-hero="title-primary"
+              className="block"
             >
-              {slide.src ? (
-                <img
-                  src={slide.src}
-                  alt={slide.alt}
-                  className="w-full h-full object-cover"
-                  fetchPriority={slide.id === 1 ? 'high' : 'auto'}
-                  loading={slide.id === 1 ? 'eager' : 'lazy'}
-                  decoding="async"
-                />
-              ) : (
-                <div className={`w-full h-full ${PLACEHOLDER_BG} flex items-center justify-center`}>
-                  <span className="text-branco/20 text-sm font-mono">{slide.alt}</span>
-                </div>
-              )}
-              <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
-              <div className="absolute inset-0 flex items-center px-8 md:px-16 lg:px-24">
-                <div className="max-w-3xl">
-                  <p className="text-primaria uppercase tracking-[0.3em] text-xs md:text-sm font-semibold mb-5">
-                    Espaço Eventos
-                  </p>
-                  <Heading className="font-titulo text-5xl md:text-7xl lg:text-8xl text-branco leading-[0.95]">
-                    {slide.titulo}
-                    <span className="block text-primaria mt-2">
-                      {slide.subtitulo}
-                    </span>
-                  </Heading>
-                  <div className="w-16 h-px bg-primaria mt-8" />
-                  <p className="text-branco/80 text-sm md:text-base max-w-md mt-6 leading-relaxed">
-                    Um espaço pensado para transformar momentos especiais em memórias inesquecíveis.
-                  </p>
-                </div>
-              </div>
-            </div>
-            )
-          })}
+              Celebre os momentos
+            </span>
+
+            <span
+              data-hero="title-accent"
+              className="mt-2 block italic text-primaria"
+            >
+              que importam
+            </span>
+          </h1>
+
+          {/* Descrição */}
+          <p
+            data-hero="description"
+            className="hero-description mt-6 max-w-lg text-sm leading-relaxed text-branco/75 md:text-base"
+          >
+            Um espaço pensado para transformar momentos especiais em
+            memórias inesquecíveis.
+          </p>
+
+          {/* CTAs */}
+          <div className="hero-actions mt-8 flex flex-wrap items-center gap-3">
+            <a
+              data-hero="cta-primary"
+              href="#contato"
+              className="inline-flex min-h-12 items-center justify-center bg-primaria px-7 text-[10px] font-bold uppercase tracking-[0.2em] text-escuro transition-transform duration-300 hover:-translate-y-1 md:text-xs"
+            >
+              Reserve sua data
+            </a>
+
+            <Link
+              data-hero="cta-secondary"
+              to="/galeria"
+              className="group inline-flex min-h-12 items-center justify-center gap-4 border border-branco/30 bg-black/20 px-7 text-[10px] font-semibold uppercase tracking-[0.2em] text-branco backdrop-blur-sm transition-colors duration-300 hover:border-branco/60 hover:bg-branco/10 md:text-xs"
+            >
+              Ver galeria
+
+              <span
+                className="transition-transform duration-300 group-hover:translate-y-1"
+                aria-hidden="true"
+              >
+                ↓
+              </span>
+            </Link>
+          </div>
         </div>
       </div>
-      <button
-        onClick={anterior}
-        aria-label="Slide anterior"
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-branco p-2 rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-primaria"
+
+      {/* Scroll */}
+      <div
+        data-hero="scroll"
+        className="hero-scroll absolute bottom-16 right-8 z-10 hidden flex-col items-center gap-3 lg:flex xl:right-12"
+        aria-hidden="true"
       >
-        <ChevronLeft size={28} aria-hidden="true" />
-      </button>
-      <button
-        onClick={proximo}
-        aria-label="Próximo slide"
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-branco p-2 rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-primaria"
-      >
-        <ChevronRight size={28} aria-hidden="true" />
-      </button>
-      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex" role="group" aria-label="Slides">
-        {slides.map((slide, i) => (
-          <button
-            key={i}
-            type="button"
-            aria-pressed={i === slideAtual}
-            aria-label={`Ir para slide ${i + 1}: ${slide.titulo}`}
-            onClick={() => {
-              pausar()
-              emblaApi?.scrollTo(i, movimentoReduzido)
-            }}
-            className="w-11 h-11 flex items-center justify-center rounded-full"
-          >
-            <span aria-hidden="true" className={`w-3 h-3 rounded-full transition-colors ${
-              i === slideAtual ? 'bg-primaria' : 'bg-branco/50'
-            }`} />
-          </button>
-        ))}
+        <span className="text-[8px] uppercase tracking-[0.3em] text-branco/50 [writing-mode:vertical-rl]">
+          Scroll
+        </span>
+
+        <span className="h-10 w-px bg-branco/30" />
       </div>
     </section>
   )
