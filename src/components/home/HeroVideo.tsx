@@ -63,11 +63,16 @@ export default function HeroVideo() {
     }
   }
 
+  const [videoReady, setVideoReady] = useState(false)
+
   return (
     <>
       <video
         ref={videoRef}
-        className="hero-video absolute inset-0 h-full w-full object-cover"
+        className={`hero-video absolute inset-0 h-full w-full object-cover ${
+          videoReady ? 'hero-video--ready' : ''
+        }`}
+        onCanPlay={() => setVideoReady(true)}
         autoPlay
         muted
         loop

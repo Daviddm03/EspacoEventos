@@ -81,16 +81,21 @@ export default function GalleryHeroVideo() {
     }
   }, [playbackAllowed])
 
+  const [videoReady, setVideoReady] = useState(false)
+
   return (
     <video
       ref={videoRef}
-      className="absolute inset-0 h-full w-full object-cover"
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="auto"
-      aria-hidden="true"
+        className={`absolute inset-0 h-full w-full object-cover ${
+          videoReady ? 'gallery-video--ready' : ''
+        }`}
+        onCanPlay={() => setVideoReady(true)}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-hidden="true"
     >
       <source
         src="/videos/Video-galeria.mp4"
