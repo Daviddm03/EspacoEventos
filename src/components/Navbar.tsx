@@ -13,7 +13,7 @@ import logo from '../assets/logo2.png'
 export default function Navbar() {
   const { pathname } = useLocation()
 
-  return <Navigation key={pathname} pathname={pathname} />
+  return <Navigation pathname={pathname} />
 }
 
 function Navigation({ pathname }: { pathname: string }) {
@@ -42,14 +42,20 @@ function Navigation({ pathname }: { pathname: string }) {
 
   // Detecta o scroll da página
   useEffect(() => {
-    const verificarScroll = () => setScrolled(window.scrollY > 40)
+    const verificarScroll = () => {
+      setScrolled(window.scrollY > 40)
+    }
 
-    window.addEventListener('scroll', verificarScroll, { passive: true })
+    verificarScroll()
+
+    window.addEventListener('scroll', verificarScroll, {
+      passive: true,
+    })
 
     return () => {
       window.removeEventListener('scroll', verificarScroll)
     }
-  }, [])
+  }, [pathname])
 
   // Fecha o menu com Escape ou ao mudar para desktop
   useEffect(() => {
