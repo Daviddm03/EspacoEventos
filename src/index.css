@@ -918,6 +918,15 @@ p { text-wrap: pretty; }
   display: none !important;
 }
 
+.hero-video {
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+
+.hero-video.hero-video--ready {
+  opacity: 1;
+}
+
 @keyframes scroll-label-float {
   0%,
   100% {
