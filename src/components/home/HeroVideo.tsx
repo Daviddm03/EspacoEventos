@@ -82,10 +82,11 @@ export default function HeroVideo() {
     <video
       ref={videoRef}
       className="hero-video absolute inset-0 h-full w-full object-cover"
+      autoPlay
       muted
       loop
       playsInline
-      preload="metadata"
+      preload="auto"
       aria-hidden="true"
     >
       <source

@@ -330,7 +330,6 @@ export default function Galeria() {
             onClick={() =>
               setImagemAberta(null)
             }
-            autoFocus
             aria-label="Fechar foto"
             className="
               absolute right-4 top-4

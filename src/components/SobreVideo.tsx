@@ -69,10 +69,11 @@ export default function SobreVideo() {
     <video
       ref={videoRef}
       className="hero-video absolute inset-0 h-full w-full object-cover"
+      autoPlay
       muted
       loop
       playsInline
-      preload="metadata"
+      preload="auto"
       aria-hidden="true"
     >
       <source src="/videos/Video-sobre.mp4" type="video/mp4" />
