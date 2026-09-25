@@ -25,6 +25,8 @@ export default function Galeria() {
   const fotoAcionadoraRef =
     useRef<HTMLButtonElement | null>(null)
 
+  const abriuComTecladoRef = useRef(false)
+
   const imagensFiltradas =
     categoriaAtiva === 'todos'
       ? imagensGaleria
@@ -82,7 +84,10 @@ export default function Galeria() {
       document.body.style.paddingRight =
         paddingAnterior
 
-      if (acionador?.isConnected) {
+      if (
+        abriuComTecladoRef.current &&
+        acionador?.isConnected
+      ) {
         acionador.focus({
           preventScroll: true,
         })
@@ -240,12 +245,22 @@ export default function Galeria() {
                   <button
                     key={imagem.id}
                     className="gallery-item"
-                    onClick={event => {
-                      fotoAcionadoraRef.current =
-                        event.currentTarget
+                    onPointerDown={() => {
+                    abriuComTecladoRef.current = false
+                  }}
 
-                      setImagemAberta(imagem.id)
-                    }}
+                  onKeyDown={event => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      abriuComTecladoRef.current = true
+                    }
+                  }}
+
+                  onClick={event => {
+                    fotoAcionadoraRef.current =
+                      event.currentTarget
+
+                    setImagemAberta(imagem.id)
+                  }}
                     aria-label={`Ver foto: ${imagem.alt}`}
                   >
                     <span className="photo-frame block">
@@ -332,6 +347,7 @@ export default function Galeria() {
             }
             aria-label="Fechar foto"
             className="
+              gallery-lightbox-close
               absolute right-4 top-4
               flex min-h-11 min-w-11
               items-center justify-center

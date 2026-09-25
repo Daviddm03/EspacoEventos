@@ -1,82 +1,48 @@
-﻿import { useEffect, useRef, useState } from 'react'
+﻿import { useEffect, useRef } from 'react'
 
 export default function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null)
-
-  const [playbackAllowed, setPlaybackAllowed] = useState(
-    () => !window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-  )
-
-  useEffect(() => {
-    const preference = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
-    )
-
-    const update = () => {
-      setPlaybackAllowed(!preference.matches)
-    }
-
-    preference.addEventListener('change', update)
-
-    return () => {
-      preference.removeEventListener('change', update)
-    }
-  }, [])
 
   useEffect(() => {
     const video = videoRef.current
 
     if (!video) return
 
-    let inView = false
-    let disposed = false
-
-    const syncPlayback = () => {
-      if (playbackAllowed && inView && !document.hidden) {
-        void video.play().then(() => {
-          if (disposed || !inView || document.hidden) {
-            video.pause()
-          }
-        }).catch(() => {
-          // Autoplay pode ser bloqueado pelo navegador.
-        })
-
+    const tryPlay = () => {
+      if (
+        document.hidden ||
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      ) {
+        video.pause()
         return
       }
 
-      video.pause()
+      void video.play().catch(() => {
+        // O navegador pode bloquear autoplay.
+      })
     }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        inView = entry.isIntersecting
-        syncPlayback()
-      },
-      {
-        threshold: 0.01,
-      },
-    )
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        video.pause()
+      } else {
+        tryPlay()
+      }
+    }
 
-    observer.observe(video)
+    tryPlay()
 
-    document.addEventListener(
-      'visibilitychange',
-      syncPlayback,
-    )
+    video.addEventListener('canplay', tryPlay)
+    document.addEventListener('visibilitychange', handleVisibilityChange)
 
     return () => {
-      disposed = true
-
-      observer.disconnect()
-
+      video.removeEventListener('canplay', tryPlay)
       document.removeEventListener(
         'visibilitychange',
-        syncPlayback,
+        handleVisibilityChange,
       )
-
-      video.pause()
     }
-  }, [playbackAllowed])
+  }, [])
 
   return (
     <video

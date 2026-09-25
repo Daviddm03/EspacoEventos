@@ -525,6 +525,17 @@ p { text-wrap: pretty; }
     background: var(--color-primaria-texto);
   }
 }
+
+@media (hover: none) and (pointer: coarse) {
+  .gallery-lightbox-close:focus,
+  .gallery-lightbox-close:focus-visible,
+  .gallery-item:focus,
+  .gallery-item:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
 .about-intro {
   display: grid;
   gap: 2.5rem;
