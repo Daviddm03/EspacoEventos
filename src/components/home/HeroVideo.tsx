@@ -1,42 +1,48 @@
-﻿import { useEffect, useRef } from 'react'
+﻿import { useEffect, useRef, useState } from 'react'
+import { Play } from 'lucide-react'
 
 export default function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null)
+  const [autoplayBlocked, setAutoplayBlocked] = useState(false)
 
   useEffect(() => {
     const video = videoRef.current
 
     if (!video) return
 
-    const tryPlay = () => {
+    const tryPlay = async () => {
       if (
         document.hidden ||
         window.matchMedia('(prefers-reduced-motion: reduce)').matches
       ) {
-        video.pause()
         return
       }
 
-      void video.play().catch(() => {
-        // O navegador pode bloquear autoplay.
-      })
+      try {
+        await video.play()
+        setAutoplayBlocked(false)
+      } catch {
+        setAutoplayBlocked(true)
+      }
     }
 
     const handleVisibilityChange = () => {
       if (document.hidden) {
         video.pause()
-      } else {
-        tryPlay()
+        return
       }
+
+      void tryPlay()
     }
 
-    tryPlay()
+    void tryPlay()
 
-    video.addEventListener('canplay', tryPlay)
-    document.addEventListener('visibilitychange', handleVisibilityChange)
+    document.addEventListener(
+      'visibilitychange',
+      handleVisibilityChange,
+    )
 
     return () => {
-      video.removeEventListener('canplay', tryPlay)
       document.removeEventListener(
         'visibilitychange',
         handleVisibilityChange,
@@ -44,21 +50,48 @@ export default function HeroVideo() {
     }
   }, [])
 
+  const handleManualPlay = async () => {
+    const video = videoRef.current
+
+    if (!video) return
+
+    try {
+      await video.play()
+      setAutoplayBlocked(false)
+    } catch {
+      // O navegador ainda não permitiu a reprodução.
+    }
+  }
+
   return (
-    <video
-      ref={videoRef}
-      className="hero-video absolute inset-0 h-full w-full object-cover"
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="auto"
-      aria-hidden="true"
-    >
-      <source
-        src="/videos/Video-espaco-eventos.mp4"
-        type="video/mp4"
-      />
-    </video>
+    <>
+      <video
+        ref={videoRef}
+        className="hero-video absolute inset-0 h-full w-full object-cover"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-hidden="true"
+      >
+        <source
+          src="/videos/Video-espaco-eventos.mp4"
+          type="video/mp4"
+        />
+      </video>
+
+      {autoplayBlocked && (
+        <button
+          type="button"
+          onClick={handleManualPlay}
+          className="hero-video-play"
+          aria-label="Reproduzir vídeo"
+        >
+          <Play size={15} fill="currentColor" aria-hidden="true" />
+          <span>Reproduzir vídeo</span>
+        </button>
+      )}
+    </>
   )
 }
