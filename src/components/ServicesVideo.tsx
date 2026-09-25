@@ -67,22 +67,18 @@ export default function ServicesVideo() {
       video.pause()
     }
   }, [playbackAllowed])
-
-  const [videoReady, setVideoReady] = useState(false)
+  
 
   return (
     <video
       ref={videoRef}
-        className={`absolute inset-0 h-full w-full object-cover ${
-          videoReady ? 'services-video--ready' : ''
-        }`}
-        onCanPlay={() => setVideoReady(true)}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        aria-hidden="true"
+      className="absolute inset-0 h-full w-full object-cover"
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="auto"
+      aria-hidden="true"
     >
       <source
         src="/videos/Video-servicos.mp4"
