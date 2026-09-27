@@ -14,7 +14,7 @@ export const servicos: Servico[] = [
     resumo: 'Aniversários, casamentos, formaturas, confraternizações e muito mais.',
     descricao: '[DESCRIÇÃO COMPLETA DOS TIPOS DE FESTA REALIZADOS NO ESPAÇO]',
     itens: ['Aniversários', 'Casamentos', 'Formaturas', 'Confraternizações', 'Festas Infantis'],
-    imagem: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1000&q=80',
+    imagem: '/fotos/optimized/Formatura.webp',
   },
   {
     id: 'bar',
@@ -22,7 +22,7 @@ export const servicos: Servico[] = [
     resumo: 'Drinks, bebidas e coquetéis para tornar a festa ainda mais especial.',
     descricao: '[DESCRIÇÃO DO BAR: BEBIDAS DISPONÍVEIS, BARMAN, DIFERENCIAIS]',
     itens: ['Drinks e Coquetéis', 'Cervejas e Vinhos', 'Bebidas sem álcool', 'Barman profissional'],
-    imagem: 'https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1000&q=80',
+    imagem: '/fotos/optimized/Bar-foto-principal.webp',
   },
   {
     id: 'totem',
@@ -38,7 +38,7 @@ export const servicos: Servico[] = [
     resumo: 'Pista de dança com iluminação LED para animar a festa.',
     descricao: '[DESCRIÇÃO DA PISTA DE LED: EFEITOS, TAMANHO, DIFERENCIAIS]',
     itens: ['Iluminação colorida', 'Efeitos sincronizados', 'DJ incluso opcional', 'Estrutura completa'],
-    imagem: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1000&q=80',
+    imagem: '/fotos/optimized/Pista-led.webp',
   },
   {
     id: 'kids',
@@ -46,7 +46,7 @@ export const servicos: Servico[] = [
     resumo: 'Espaço kids completo para a criançada se divertir com segurança.',
     descricao: '[DESCRIÇÃO DO ESPAÇO KIDS: BRINQUEDOS, SEGURANÇA, MONITORES]',
     itens: ['Pula-pula', 'Escorregador', 'Mesa de atividades', 'Monitor responsável'],
-    imagem: 'https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&w=1000&q=80',
+    imagem: '/fotos/optimized/Kids-posando.webp',
   },
   {
     id: 'gastronomia',
