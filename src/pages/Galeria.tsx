@@ -27,6 +27,22 @@ export default function Galeria() {
 
   const abriuComTecladoRef = useRef(false)
 
+  const [inputModality, setInputModality] =
+    useState<'pointer' | 'keyboard'>('pointer')
+
+  useEffect(() => {
+    const handlePointerDown = () => setInputModality('pointer')
+    const handleKeyDown = () => setInputModality('keyboard')
+
+    document.addEventListener('pointerdown', handlePointerDown, true)
+    document.addEventListener('keydown', handleKeyDown, true)
+
+    return () => {
+      document.removeEventListener('pointerdown', handlePointerDown, true)
+      document.removeEventListener('keydown', handleKeyDown, true)
+    }
+  }, [])
+
   const imagensFiltradas =
     categoriaAtiva === 'todos'
       ? imagensGaleria
@@ -173,6 +189,7 @@ export default function Galeria() {
 
       <section
         className="gallery-section"
+        data-input-modality={inputModality}
         aria-label="Fotografias do Espaço Eventos"
       >
         <div className="site-container">
@@ -317,6 +334,7 @@ export default function Galeria() {
       {imagemAtual && (
         <dialog
           ref={lightboxRef}
+          data-input-modality={inputModality}
           className="
             fixed inset-0 m-0
             h-dvh w-screen

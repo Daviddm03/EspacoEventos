@@ -10,43 +10,59 @@ export default function HeroVideo() {
 
     if (!video) return
 
+    const preference = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    )
+    let inView = false
+    let disposed = false
+
+    const canAutoplay = () =>
+      !disposed && inView && !document.hidden && !preference.matches
+
     const tryPlay = async () => {
-      if (
-        document.hidden ||
-        window.matchMedia('(prefers-reduced-motion: reduce)').matches
-      ) {
+      if (!canAutoplay()) {
+        video.pause()
         return
       }
 
       try {
         await video.play()
+
+        if (!canAutoplay()) {
+          video.pause()
+          return
+        }
+
         setAutoplayBlocked(false)
-      } catch {
-        setAutoplayBlocked(true)
+      } catch (error) {
+        if (
+          canAutoplay() &&
+          !(error instanceof DOMException && error.name === 'AbortError')
+        ) {
+          setAutoplayBlocked(true)
+        }
       }
     }
 
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        video.pause()
-        return
-      }
-
-      void tryPlay()
-    }
-
-    void tryPlay()
-
-    document.addEventListener(
-      'visibilitychange',
-      handleVisibilityChange,
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (inView === entry.isIntersecting) return
+        inView = entry.isIntersecting
+        void tryPlay()
+      },
+      { threshold: 0.01 },
     )
 
+    observer.observe(video)
+    preference.addEventListener('change', tryPlay)
+    document.addEventListener('visibilitychange', tryPlay)
+
     return () => {
-      document.removeEventListener(
-        'visibilitychange',
-        handleVisibilityChange,
-      )
+      disposed = true
+      observer.disconnect()
+      preference.removeEventListener('change', tryPlay)
+      document.removeEventListener('visibilitychange', tryPlay)
+      video.pause()
     }
   }, [])
 
@@ -69,7 +85,6 @@ export default function HeroVideo() {
       <video
         ref={videoRef}
         className="hero-video absolute inset-0 h-full w-full object-cover"
-        autoPlay
         muted
         loop
         playsInline

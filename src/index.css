@@ -526,14 +526,10 @@ p { text-wrap: pretty; }
   }
 }
 
-@media (hover: none) and (pointer: coarse) {
-  .gallery-lightbox-close:focus,
-  .gallery-lightbox-close:focus-visible,
-  .gallery-item:focus,
-  .gallery-item:focus-visible {
-    outline: none;
-    box-shadow: none;
-  }
+[data-input-modality="pointer"] .gallery-lightbox-close:focus,
+[data-input-modality="pointer"] .gallery-item:focus {
+  outline: none;
+  box-shadow: none;
 }
 
 .about-intro {

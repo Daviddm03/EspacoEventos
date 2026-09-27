@@ -19,6 +19,7 @@ export default function Navbar() {
 function Navigation({ pathname }: { pathname: string }) {
   const [menuAberto, setMenuAberto] = useState(false)
   const [menuMontado, setMenuMontado] = useState(false)
+  const [previousPathname, setPreviousPathname] = useState(pathname)
   const [scrolled, setScrolled] = useState(() => window.scrollY > 40)
 
   const menuButtonRef = useRef<HTMLButtonElement>(null)
@@ -285,6 +286,12 @@ useEffect(() => {
       context.revert()
     }
   }, [menuAberto, menuMontado])
+
+  // Fecha pela animação existente quando o pathname muda.
+  if (pathname !== previousPathname) {
+    setPreviousPathname(pathname)
+    setMenuAberto(false)
+  }
 
   const abrirFecharMenu = () => {
     if (menuAberto) {
