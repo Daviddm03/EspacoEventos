@@ -7,7 +7,6 @@ import Home from './pages/Home'
 import Galeria from './pages/Galeria'
 import Servicos from './pages/Servicos'
 import Sobre from './pages/Sobre'
-import Totem from './pages/Totem'
 import NotFound from './pages/NotFound'
 
 function App() {
@@ -28,7 +27,6 @@ function App() {
           <Route path="/galeria" element={<Galeria />} />
           <Route path="/servicos" element={<Servicos />} />
           <Route path="/sobre" element={<Sobre />} />
-          <Route path="/totem" element={<Totem />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

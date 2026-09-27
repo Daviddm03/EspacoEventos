@@ -1,4 +1,4 @@
-export type CategoriaGaleria = 'todos' | 'espaco' | 'eventos' | 'decoracao' | 'totem'
+export type CategoriaGaleria = 'todos' | 'espaco' | 'eventos' | 'decoracao'
 
 export interface ImagemGaleria {
   id: number
@@ -12,7 +12,6 @@ export const categoriasGaleria: { id: CategoriaGaleria; label: string }[] = [
   { id: 'espaco', label: 'Espaço' },
   { id: 'eventos', label: 'Eventos' },
   { id: 'decoracao', label: 'Decoração' },
-  { id: 'totem', label: 'Totem' },
 ]
 
 export const imagensGaleria: ImagemGaleria[] = [
@@ -68,12 +67,12 @@ export const imagensGaleria: ImagemGaleria[] = [
     id: 9,
     src: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80',
     alt: 'Totem em evento',
-    categoria: 'totem',
+    categoria: 'espaco',
   },
   {
     id: 10,
     src: '/fotos/optimized/Convidados-foto.webp',
     alt: 'Convidados em evento',
-    categoria: 'totem',
+    categoria: 'espaco',
   },
 ]

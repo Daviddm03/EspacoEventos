@@ -28,11 +28,6 @@ export const SEO_PAGES = [
     title: 'Sobre o Espaço Eventos | Festas em Porto Alegre',
     description: 'Saiba mais sobre o Espaço Eventos, seu ambiente e sua proposta para festas e celebrações na Av. Professor Oscar Pereira, 1549, em Porto Alegre.',
   },
-  {
-    path: '/totem',
-    title: 'Totem de Fotos | Espaço Eventos em Porto Alegre',
-    description: 'Página do totem de fotos do Espaço Eventos, em Porto Alegre. O envio de fotos pelo site ainda não está disponível.',
-  },
 ] as const
 
 export const NOT_FOUND_SEO = {

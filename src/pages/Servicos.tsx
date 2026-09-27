@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom'
-import { ArrowUpRight } from 'lucide-react'
 import { servicos } from '../data/servicos'
 import ServicesVideo from '../components/ServicesVideo'
 import VenueImage from '../components/VenueImage'
@@ -110,16 +108,6 @@ export default function Servicos() {
       <li key={item}>{item}</li>
     ))}
   </ul>
-
-  {servico.id === 'totem' && (
-    <Link
-      to="/totem"
-      className="editorial-link mt-5"
-    >
-      Conheça o totem
-      <ArrowUpRight aria-hidden="true" />
-    </Link>
-  )}
 </Reveal>
           </section>
         ))}
