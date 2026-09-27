@@ -35,12 +35,17 @@ export const SEO_PAGES = [
   },
 ] as const
 
+export const NOT_FOUND_SEO = {
+  title: 'Página não encontrada | Espaço Eventos',
+  description: 'A página que você procura não foi encontrada.',
+} as const
+
 export function getPageSeo(pathname: string) {
   const path = pathname.toLowerCase().replace(/\/+$/, '') || '/'
   return SEO_PAGES.find(page => page.path === path)
 }
 
-export function getMetaTags(page: typeof SEO_PAGES[number]) {
+export function getMetaTags(page: { title: string; description: string }) {
   return [
     { name: 'description', content: page.description },
     { property: 'og:title', content: page.title },
