@@ -4,7 +4,7 @@ import { ArrowUpRight } from 'lucide-react'
 
 import { WHATSAPP_URL } from '../../lib/constants'
 
-import { imagensGaleria } from '../../data/galeria'
+import { imagensDestaque } from '../../data/galeria'
 
 import VenueImage from '../VenueImage'
 
@@ -36,7 +36,7 @@ export default function CtaWhatsapp({
       {/* Foto de fundo */}
       <div className="contact-photo">
         <VenueImage
-          src={imagensGaleria[0].src}
+          src={imagensDestaque.salao.src}
           sizes="100vw"
         />
       </div>

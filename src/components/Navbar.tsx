@@ -31,7 +31,7 @@ function Navigation({ pathname }: { pathname: string }) {
   const mobileContactRef = useRef<HTMLDivElement>(null)
 
   const normalizedPathname =
-  pathname === '/' ? '/' : pathname.replace(/\/+$/, '').toLowerCase()
+    pathname === '/' ? '/' : pathname.replace(/\/+$/, '').toLowerCase()
 
   const hasHero =
     normalizedPathname === '/' ||
@@ -87,51 +87,51 @@ function Navigation({ pathname }: { pathname: string }) {
   }, [menuAberto])
 
   // Mantém o foco do teclado dentro do menu mobile
-useEffect(() => {
-  if (!menuAberto) return
+  useEffect(() => {
+    if (!menuAberto) return
 
-  const menu = mobileMenuRef.current
-  if (!menu) return
+    const menu = mobileMenuRef.current
+    if (!menu) return
 
-  const focusableSelector = [
-    'a[href]',
-    'button:not([disabled])',
-    '[tabindex]:not([tabindex="-1"])',
-  ].join(',')
+    const focusableSelector = [
+      'a[href]',
+      'button:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])',
+    ].join(',')
 
-  const handleTab = (event: KeyboardEvent) => {
-    if (event.key !== 'Tab') return
+    const handleTab = (event: KeyboardEvent) => {
+      if (event.key !== 'Tab') return
 
-    const focusableElements = Array.from(
-      menu.querySelectorAll<HTMLElement>(focusableSelector),
-    ).filter((element) => !element.hasAttribute('disabled'))
+      const focusableElements = Array.from(
+        menu.querySelectorAll<HTMLElement>(focusableSelector),
+      ).filter((element) => !element.hasAttribute('disabled'))
 
-    // O botão de fechar está fora do <nav>, então também faz parte do ciclo.
-    const closeButton = menuButtonRef.current
+      // O botão de fechar está fora do <nav>, então também faz parte do ciclo.
+      const closeButton = menuButtonRef.current
 
-    if (!closeButton || focusableElements.length === 0) return
+      if (!closeButton || focusableElements.length === 0) return
 
-    const firstElement = closeButton
-    const lastElement = focusableElements[focusableElements.length - 1]
+      const firstElement = closeButton
+      const lastElement = focusableElements[focusableElements.length - 1]
 
-    if (event.shiftKey && document.activeElement === firstElement) {
-      event.preventDefault()
-      lastElement.focus()
-      return
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault()
+        lastElement.focus()
+        return
+      }
+
+      if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault()
+        firstElement.focus()
+      }
     }
 
-    if (!event.shiftKey && document.activeElement === lastElement) {
-      event.preventDefault()
-      firstElement.focus()
+    document.addEventListener('keydown', handleTab)
+
+    return () => {
+      document.removeEventListener('keydown', handleTab)
     }
-  }
-
-  document.addEventListener('keydown', handleTab)
-
-  return () => {
-    document.removeEventListener('keydown', handleTab)
-  }
-}, [menuAberto])
+  }, [menuAberto])
 
   // Trava o scroll enquanto o menu está aberto ou fechando
   useEffect(() => {
@@ -308,19 +308,17 @@ useEffect(() => {
   }
 
   const isAtivo = (to: string) =>
-  to === '/'
-    ? normalizedPathname === '/'
-    : normalizedPathname.startsWith(to.toLowerCase())
+    to === '/'
+      ? normalizedPathname === '/'
+      : normalizedPathname.startsWith(to.toLowerCase())
 
   return (
     <header
-      className={`navbar-shell top-0 z-50 w-full ${
-        hasHero ? 'fixed' : 'sticky'
-      } ${
-        transparente
+      className={`navbar-shell top-0 z-50 w-full ${hasHero ? 'fixed' : 'sticky'
+        } ${transparente
           ? 'bg-transparent'
           : 'bg-escuro/95 backdrop-blur-md'
-      }`}
+        }`}
     >
       <div className="site-container navbar-inner">
         <Link
@@ -348,11 +346,10 @@ useEffect(() => {
               key={to}
               to={to}
               aria-current={isAtivo(to) ? 'page' : undefined}
-              className={`inline-flex min-h-11 items-center text-[13px] font-medium tracking-[0.04em] transition-colors ${
-                isAtivo(to)
+              className={`inline-flex min-h-11 items-center text-[13px] font-medium tracking-[0.04em] transition-colors ${isAtivo(to)
                   ? 'border-b border-primaria text-primaria'
                   : 'text-branco/85 hover:text-primaria'
-              }`}
+                }`}
             >
               {label}
             </Link>
@@ -437,10 +434,9 @@ useEffect(() => {
                     text-[2.5rem]
                     leading-[1.05]
                     transition-colors duration-300
-                    ${
-                      isAtivo(to)
-                        ? 'text-primaria'
-                        : 'text-branco hover:text-primaria'
+                    ${isAtivo(to)
+                      ? 'text-primaria'
+                      : 'text-branco hover:text-primaria'
                     }
                   `}
                 >
@@ -452,10 +448,9 @@ useEffect(() => {
                       absolute -bottom-2 left-0
                       h-px bg-primaria
                       transition-all duration-300
-                      ${
-                        isAtivo(to)
-                          ? 'w-8'
-                          : 'w-0 group-hover:w-8'
+                      ${isAtivo(to)
+                        ? 'w-8'
+                        : 'w-0 group-hover:w-8'
                       }
                     `}
                   />

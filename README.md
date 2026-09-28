@@ -1,76 +1,54 @@
-# React + TypeScript + Vite
+# Espaço Eventos
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Site institucional do Espaço Eventos, salão para festas e eventos em Porto Alegre.
 
-Currently, two official plugins are available:
+O projeto apresenta o espaço, seus serviços e registros de eventos, com acesso ao WhatsApp para consultas e orçamentos.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack
 
-## React Compiler
+React + TypeScript + Vite, com React Router, Tailwind CSS e GSAP.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Páginas
 
-## Expanding the ESLint configuration
+- Home (`/`)
+- Galeria (`/galeria`)
+- Serviços (`/servicos`)
+- Sobre (`/sobre`)
+- Página de conteúdo não encontrado para rotas inválidas
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Recursos técnicos
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Layout responsivo para desktop e dispositivos móveis.
+- Recursos de acessibilidade: navegação por teclado, controle de foco no menu e no lightbox, marcação semântica e respeito à preferência por movimento reduzido.
+- Galeria com filtros por categoria e visualização ampliada das fotos.
+- Fotografias locais em WebP e carregamento diferido nas imagens de conteúdo.
+- Vídeos de apresentação com controle de reprodução conforme visibilidade.
+- Metadados de SEO por página, dados estruturados e geração de `robots.txt`.
+- Favicon, Apple Touch Icon e manifest com a identidade do espaço.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+O domínio definitivo deve ser configurado em `SITE_URL`, no arquivo `src/lib/seo.ts`, antes de gerar canonical, URLs públicas de compartilhamento e sitemap.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Desenvolvimento
+
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Validação
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run lint
+npm run check:types
+npm audit
+npm run build
 ```
-# Espa-o-eventos
-# Espa-o-eventos
-# Espa-o-eventos
+
+## Build e deploy
+
+```bash
+npm run build
+npm run preview
+```
+
+O build de produção é gerado em `dist/`. O projeto está preparado para deploy na Vercel, com comando de build `npm run build`, diretório de saída `dist` e reescrita de rotas da SPA definida em `vercel.json`.

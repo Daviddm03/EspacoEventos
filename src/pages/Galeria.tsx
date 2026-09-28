@@ -47,8 +47,8 @@ export default function Galeria() {
     categoriaAtiva === 'todos'
       ? imagensGaleria
       : imagensGaleria.filter(
-          imagem => imagem.categoria === categoriaAtiva,
-        )
+        imagem => imagem.categoria === categoriaAtiva,
+      )
 
   const imagensDisponiveis =
     imagensFiltradas.filter(imagem => imagem.src !== '')
@@ -56,8 +56,8 @@ export default function Galeria() {
   const imagemAtual =
     imagemAberta !== null
       ? imagensGaleria.find(
-          imagem => imagem.id === imagemAberta,
-        )
+        imagem => imagem.id === imagemAberta,
+      )
       : null
 
   const temImagens = imagensDisponiveis.length > 0
@@ -115,74 +115,74 @@ export default function Galeria() {
     <>
       {/* HERO DA GALERIA */}
 
- <section
-  className="hero-section relative overflow-hidden bg-escuro"
-  aria-labelledby="gallery-title"
->
-  <GalleryVideo />
-
-  {/* Overlay geral */}
-  <div
-    className="absolute inset-0 bg-black/40"
-    aria-hidden="true"
-  />
-
-  {/* Gradiente horizontal */}
-  <div
-    className="absolute inset-0 bg-linear-to-r from-black/75 via-black/25 to-black/10"
-    aria-hidden="true"
-  />
-
-  {/* Gradiente vertical */}
-  <div
-    className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-black/20"
-    aria-hidden="true"
-  />
-
-  {/* Conteúdo */}
-  <div className="hero-content relative z-10 mx-auto flex h-full max-w-400 items-end px-6 pb-16 md:px-12 md:pb-20 lg:px-20 lg:pb-24 xl:px-24">
-    <div className="max-w-3xl">
-
-      <div className="hero-eyebrow mb-6 flex items-center gap-3">
-        <span className="h-1.5 w-1.5 rounded-full bg-primaria" />
-
-        <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-branco/70 md:text-xs">
-          Em imagens
-        </span>
-      </div>
-
-      <h1
-        id="gallery-title"
-        className="font-titulo text-[3.4rem] leading-[0.95] tracking-[-0.02em] text-branco sm:text-6xl md:text-7xl lg:text-[5.5rem]"
+      <section
+        className="hero-section relative overflow-hidden bg-escuro"
+        aria-labelledby="gallery-title"
       >
-        <span className="block">
-          Nossa
-        </span>
+        <GalleryVideo />
 
-        <span className="mt-2 block italic text-primaria">
-          galeria.
-        </span>
-      </h1>
+        {/* Overlay geral */}
+        <div
+          className="absolute inset-0 bg-black/40"
+          aria-hidden="true"
+        />
 
-      <p className="hero-description mt-6 max-w-lg text-sm leading-relaxed text-branco/75 md:text-base">
-        O salão, os eventos e a decoração em imagens.
-      </p>
+        {/* Gradiente horizontal */}
+        <div
+          className="absolute inset-0 bg-linear-to-r from-black/75 via-black/25 to-black/10"
+          aria-hidden="true"
+        />
 
-    </div>
-  </div>
+        {/* Gradiente vertical */}
+        <div
+          className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-black/20"
+          aria-hidden="true"
+        />
 
-  {/* Scroll */}
-  <div
-    className="hero-scroll absolute bottom-16 right-8 z-10 hidden flex-col items-center gap-3 lg:flex xl:right-12"
-    aria-hidden="true"
-  >
-    <span className="text-[8px] uppercase tracking-[0.3em] text-branco/50 [writing-mode:vertical-rl]">
-      Scroll
-    </span>
+        {/* Conteúdo */}
+        <div className="hero-content relative z-10 mx-auto flex h-full max-w-400 items-end px-6 pb-16 md:px-12 md:pb-20 lg:px-20 lg:pb-24 xl:px-24">
+          <div className="max-w-3xl">
 
-    <span className="h-10 w-px bg-branco/30" />
-  </div>
-</section>
+            <div className="hero-eyebrow mb-6 flex items-center gap-3">
+              <span className="h-1.5 w-1.5 rounded-full bg-primaria" />
+
+              <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-branco/70 md:text-xs">
+                Em imagens
+              </span>
+            </div>
+
+            <h1
+              id="gallery-title"
+              className="font-titulo text-[3.4rem] leading-[0.95] tracking-[-0.02em] text-branco sm:text-6xl md:text-7xl lg:text-[5.5rem]"
+            >
+              <span className="block">
+                Nossa
+              </span>
+
+              <span className="mt-2 block italic text-primaria">
+                galeria.
+              </span>
+            </h1>
+
+            <p className="hero-description mt-6 max-w-lg text-sm leading-relaxed text-branco/75 md:text-base">
+              O salão, os eventos e a decoração em imagens.
+            </p>
+
+          </div>
+        </div>
+
+        {/* Scroll */}
+        <div
+          className="hero-scroll absolute bottom-16 right-8 z-10 hidden flex-col items-center gap-3 lg:flex xl:right-12"
+          aria-hidden="true"
+        >
+          <span className="text-[8px] uppercase tracking-[0.3em] text-branco/50 [writing-mode:vertical-rl]">
+            Scroll
+          </span>
+
+          <span className="h-10 w-px bg-branco/30" />
+        </div>
+      </section>
 
       {/* GALERIA */}
 
@@ -262,21 +262,21 @@ export default function Galeria() {
                     key={imagem.id}
                     className="gallery-item"
                     onPointerDown={() => {
-                    abriuComTecladoRef.current = false
-                  }}
+                      abriuComTecladoRef.current = false
+                    }}
 
-                  onKeyDown={event => {
-                    if (event.key === 'Enter' || event.key === ' ') {
-                      abriuComTecladoRef.current = true
-                    }
-                  }}
+                    onKeyDown={event => {
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        abriuComTecladoRef.current = true
+                      }
+                    }}
 
-                  onClick={event => {
-                    fotoAcionadoraRef.current =
-                      event.currentTarget
+                    onClick={event => {
+                      fotoAcionadoraRef.current =
+                        event.currentTarget
 
-                    setImagemAberta(imagem.id)
-                  }}
+                      setImagemAberta(imagem.id)
+                    }}
                     aria-label={`Ver foto: ${imagem.alt}`}
                   >
                     <span className="photo-frame block">

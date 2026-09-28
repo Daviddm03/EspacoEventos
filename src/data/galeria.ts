@@ -76,3 +76,10 @@ export const imagensGaleria: ImagemGaleria[] = [
     categoria: 'espaco',
   },
 ]
+
+// Seleções por ID mantêm as fotos das seções independentes da ordem da galeria.
+export const imagensDestaque = {
+  salao: imagensGaleria.find(imagem => imagem.id === 1)!,
+  aniversario: imagensGaleria.find(imagem => imagem.id === 4)!,
+  casamento: imagensGaleria.find(imagem => imagem.id === 5)!,
+}

@@ -8,111 +8,120 @@ export default function Servicos() {
   return (
     <>
       <section
-  className="hero-section relative overflow-hidden bg-escuro"
-  aria-labelledby="services-title"
->
-  <ServicesVideo />
-
-  <div
-    className="absolute inset-0 bg-black/40"
-    aria-hidden="true"
-  />
-
-  <div
-    className="absolute inset-0 bg-linear-to-r from-black/75 via-black/25 to-black/10"
-    aria-hidden="true"
-  />
-
-  <div
-    className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-black/20"
-    aria-hidden="true"
-  />
-
-  <div className="hero-content relative z-10 mx-auto flex h-full max-w-400 items-end px-6 pb-16 md:px-12 md:pb-20 lg:px-20 lg:pb-24 xl:px-24">
-    <div className="max-w-3xl">
-
-      <div className="hero-eyebrow mb-6 flex items-center gap-3">
-        <span className="h-1.5 w-1.5 rounded-full bg-primaria" />
-
-        <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-branco/70 md:text-xs">
-          Para o seu evento
-        </span>
-      </div>
-
-      <h1
-        id="services-title"
-        className="font-titulo text-[3.4rem] leading-[0.95] tracking-[-0.02em] text-branco sm:text-6xl md:text-7xl lg:text-[5.5rem]"
+        className="hero-section relative overflow-hidden bg-escuro"
+        aria-labelledby="services-title"
       >
-        <span className="block">
-          Nossos
-        </span>
+        <ServicesVideo />
 
-        <span className="mt-2 block italic text-primaria">
-          serviços.
-        </span>
-      </h1>
+        <div
+          className="absolute inset-0 bg-black/40"
+          aria-hidden="true"
+        />
 
-      <p className="hero-description mt-6 max-w-lg text-sm leading-relaxed text-branco/75 md:text-base">
-        Bar, gastronomia e atrações: conheça as opções disponíveis para compor a sua festa.
-      </p>
+        <div
+          className="absolute inset-0 bg-linear-to-r from-black/75 via-black/25 to-black/10"
+          aria-hidden="true"
+        />
 
-    </div>
-  </div>
+        <div
+          className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-black/20"
+          aria-hidden="true"
+        />
 
-  <div
-    className="hero-scroll absolute bottom-16 right-8 z-10 hidden flex-col items-center gap-3 lg:flex xl:right-12"
-    aria-hidden="true"
-  >
-    <span className="text-[8px] uppercase tracking-[0.3em] text-branco/50 [writing-mode:vertical-rl]">
-      Scroll
-    </span>
+        <div className="hero-content relative z-10 mx-auto flex h-full max-w-400 items-end px-6 pb-16 md:px-12 md:pb-20 lg:px-20 lg:pb-24 xl:px-24">
+          <div className="max-w-3xl">
 
-    <span className="h-10 w-px bg-branco/30" />
-  </div>
-</section>
+            <div className="hero-eyebrow mb-6 flex items-center gap-3">
+              <span className="h-1.5 w-1.5 rounded-full bg-primaria" />
+
+              <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-branco/70 md:text-xs">
+                Para o seu evento
+              </span>
+            </div>
+
+            <h1
+              id="services-title"
+              className="font-titulo text-[3.4rem] leading-[0.95] tracking-[-0.02em] text-branco sm:text-6xl md:text-7xl lg:text-[5.5rem]"
+            >
+              <span className="block">
+                Nossos
+              </span>
+
+              <span className="mt-2 block italic text-primaria">
+                serviços.
+              </span>
+            </h1>
+
+            <p className="hero-description mt-6 max-w-lg text-sm leading-relaxed text-branco/75 md:text-base">
+              Bar, gastronomia e atrações: conheça as opções disponíveis para compor a sua festa.
+            </p>
+
+          </div>
+        </div>
+
+        <div
+          className="hero-scroll absolute bottom-16 right-8 z-10 hidden flex-col items-center gap-3 lg:flex xl:right-12"
+          aria-hidden="true"
+        >
+          <span className="text-[8px] uppercase tracking-[0.3em] text-branco/50 [writing-mode:vertical-rl]">
+            Scroll
+          </span>
+
+          <span className="h-10 w-px bg-branco/30" />
+        </div>
+      </section>
       <div className="site-container services-content">
         {servicos.map((servico, index) => (
-          <section key={servico.id} id={servico.id} className="service-detail" aria-labelledby={`titulo-${servico.id}`}>
+          <section
+            key={servico.id}
+            id={servico.id}
+            className="service-detail"
+            aria-labelledby={`titulo-${servico.id}`}
+          >
             <Reveal
-  className="service-detail-image"
-  y={42}
->
-  <div className="photo-frame">
-    <VenueImage src={servico.imagem} />
-  </div>
-</Reveal>
+              className="service-detail-image"
+              y={42}
+            >
+              <div className="photo-frame">
+                <VenueImage src={servico.imagem} />
+              </div>
+            </Reveal>
 
-<Reveal
-  y={28}
-  delay={0.12}
->
-  <span className="service-number" aria-hidden="true">
-    {String(index + 1).padStart(2, '0')}
-  </span>
+            <Reveal
+              y={28}
+              delay={0.12}
+            >
+              <span className="service-number" aria-hidden="true">
+                {String(index + 1).padStart(2, '0')}
+              </span>
 
-  <h2 id={`titulo-${servico.id}`}>
-    {servico.titulo}
-  </h2>
+              <h2 id={`titulo-${servico.id}`}>
+                {servico.titulo}
+              </h2>
 
-  <p className="body-copy">
-    {servico.descricao.startsWith('[')
-      ? servico.resumo
-      : servico.descricao}
-  </p>
+              <p className="body-copy">
+                {servico.descricao}
+              </p>
 
-  <ul
-    className="service-features"
-    aria-label={`Itens de ${servico.titulo}`}
-  >
-    {servico.itens.map(item => (
-      <li key={item}>{item}</li>
-    ))}
-  </ul>
-</Reveal>
+              <ul
+                className="service-features"
+                aria-label={`Itens de ${servico.titulo}`}
+              >
+                {servico.itens.map(item => (
+                  <li key={item}>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
           </section>
         ))}
       </div>
-      <CtaWhatsapp eyebrow="Vamos conversar" description="Conte como você imagina o seu evento e consulte as opções que podem fazer parte do orçamento." label="Falar no WhatsApp">
+      <CtaWhatsapp
+        eyebrow="Vamos conversar"
+        description="Conte como você imagina o seu evento e consulte as opções que podem fazer parte do orçamento."
+        label="Falar no WhatsApp"
+      >
         Quais serviços combinam <em className="block">com a sua festa?</em>
       </CtaWhatsapp>
     </>

@@ -1,4 +1,4 @@
-﻿import { useLayoutEffect, useRef } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 
 import gsap from 'gsap'
 
@@ -21,144 +21,144 @@ export default function Hero() {
     const media = gsap.matchMedia()
 
     media.add('(prefers-reduced-motion: no-preference)', () => {
-  const eyebrow = hero.querySelector('[data-hero="eyebrow"]')
-  const titlePrimary = hero.querySelector('[data-hero="title-primary"]')
-  const titleAccent = hero.querySelector('[data-hero="title-accent"]')
-  const description = hero.querySelector('[data-hero="description"]')
-  const primaryCta = hero.querySelector('[data-hero="cta-primary"]')
-  const secondaryCta = hero.querySelector('[data-hero="cta-secondary"]')
-  const scroll = hero.querySelector('[data-hero="scroll"]')
+      const eyebrow = hero.querySelector('[data-hero="eyebrow"]')
+      const titlePrimary = hero.querySelector('[data-hero="title-primary"]')
+      const titleAccent = hero.querySelector('[data-hero="title-accent"]')
+      const description = hero.querySelector('[data-hero="description"]')
+      const primaryCta = hero.querySelector('[data-hero="cta-primary"]')
+      const secondaryCta = hero.querySelector('[data-hero="cta-secondary"]')
+      const scroll = hero.querySelector('[data-hero="scroll"]')
 
-  const timeline = gsap.timeline({
-    paused: true,
-    defaults: {
-      ease: 'power3.out',
-    },
-  })
+      const timeline = gsap.timeline({
+        paused: true,
+        defaults: {
+          ease: 'power3.out',
+        },
+      })
 
-  timeline
-    .fromTo(
-      eyebrow,
-      {
-        opacity: 0,
-        y: 12,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.55,
-      },
-      0.1,
-    )
+      timeline
+        .fromTo(
+          eyebrow,
+          {
+            opacity: 0,
+            y: 12,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.55,
+          },
+          0.1,
+        )
 
-    .fromTo(
-      titlePrimary,
-      {
-        opacity: 0,
-        y: 32,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.85,
-        ease: 'power4.out',
-      },
-      0.2,
-    )
+        .fromTo(
+          titlePrimary,
+          {
+            opacity: 0,
+            y: 32,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.85,
+            ease: 'power4.out',
+          },
+          0.2,
+        )
 
-    .fromTo(
-      titleAccent,
-      {
-        opacity: 0,
-        y: 36,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.9,
-        ease: 'power4.out',
-      },
-      0.32,
-    )
+        .fromTo(
+          titleAccent,
+          {
+            opacity: 0,
+            y: 36,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            ease: 'power4.out',
+          },
+          0.32,
+        )
 
-    .fromTo(
-      description,
-      {
-        opacity: 0,
-        y: 18,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.65,
-      },
-      0.5,
-    )
+        .fromTo(
+          description,
+          {
+            opacity: 0,
+            y: 18,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.65,
+          },
+          0.5,
+        )
 
-    .fromTo(
-      [primaryCta, secondaryCta],
-      {
-        opacity: 0,
-        y: 18,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.08,
-      },
-      0.62,
-    )
+        .fromTo(
+          [primaryCta, secondaryCta],
+          {
+            opacity: 0,
+            y: 18,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.08,
+          },
+          0.62,
+        )
 
-    .fromTo(
-      scroll,
-      {
-        opacity: 0,
-        y: -10,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-      },
-      0.88,
-    )
+        .fromTo(
+          scroll,
+          {
+            opacity: 0,
+            y: -10,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+          },
+          0.88,
+        )
 
-  const trigger = ScrollTrigger.create({
-    trigger: hero,
+      const trigger = ScrollTrigger.create({
+        trigger: hero,
 
-    start: 'top 80%',
-    end: 'bottom 20%',
+        start: 'top 80%',
+        end: 'bottom 20%',
 
-    onEnter: () => {
-      timeline.restart()
-    },
+        onEnter: () => {
+          timeline.restart()
+        },
 
-    onEnterBack: () => {
-      timeline.restart()
-    },
+        onEnterBack: () => {
+          timeline.restart()
+        },
 
-    onLeave: () => {
-      timeline.pause(0)
-    },
+        onLeave: () => {
+          timeline.pause(0)
+        },
 
-    onLeaveBack: () => {
-      timeline.pause(0)
-    },
-  })
+        onLeaveBack: () => {
+          timeline.pause(0)
+        },
+      })
 
-  const showFocusedContent = () => {
-    timeline.progress(1)
-  }
+      const showFocusedContent = () => {
+        timeline.progress(1)
+      }
 
-  hero.addEventListener('focusin', showFocusedContent)
+      hero.addEventListener('focusin', showFocusedContent)
 
-  return () => {
-    hero.removeEventListener('focusin', showFocusedContent)
-    trigger.kill()
-    timeline.kill()
-  }
-}, hero)
+      return () => {
+        hero.removeEventListener('focusin', showFocusedContent)
+        trigger.kill()
+        timeline.kill()
+      }
+    }, hero)
 
     return () => {
       media.revert()

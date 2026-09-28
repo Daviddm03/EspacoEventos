@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
-import { imagensGaleria } from '../../data/galeria'
+import { imagensDestaque } from '../../data/galeria'
 import VenueImage from '../VenueImage'
 import Reveal from './Reveal'
 
-const selecao = [imagensGaleria[4], imagensGaleria[3]]
+const selecao = [imagensDestaque.casamento, imagensDestaque.aniversario]
 
 export default function GaleriaResumo() {
   return (
