@@ -147,7 +147,7 @@ export default function Galeria() {
         <span className="h-1.5 w-1.5 rounded-full bg-primaria" />
 
         <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-branco/70 md:text-xs">
-          Momentos especiais
+          Em imagens
         </span>
       </div>
 
@@ -165,8 +165,7 @@ export default function Galeria() {
       </h1>
 
       <p className="hero-description mt-6 max-w-lg text-sm leading-relaxed text-branco/75 md:text-base">
-        Momentos reais, detalhes e celebrações que
-        ganharam vida por aqui.
+        O salão, os eventos e a decoração em imagens.
       </p>
 
     </div>
@@ -247,7 +246,7 @@ export default function Galeria() {
 
               <p className="body-copy">
                 Volte em breve para conferir novos
-                momentos.
+                registros.
               </p>
             </div>
           ) : (
@@ -322,11 +321,11 @@ export default function Galeria() {
       {/* CTA */}
 
       <CtaWhatsapp
-        eyebrow="Seu momento"
-        description="Cada celebração começa com uma ideia. Conte-nos como você imagina a sua."
+        eyebrow="Gostou do espaço?"
+        description="Peça um orçamento para realizar seu evento aqui."
       >
-        Sua história pode ser{' '}
-        <em className="block">a próxima.</em>
+        Vamos planejar{' '}
+        <em className="block">sua festa?</em>
       </CtaWhatsapp>
 
       {/* LIGHTBOX — mantido por enquanto */}

@@ -230,8 +230,8 @@ export default function Hero() {
             data-hero="description"
             className="hero-description mt-6 max-w-lg text-sm leading-relaxed text-branco/75 md:text-base"
           >
-            Um espaço pensado para transformar momentos especiais em
-            memórias inesquecíveis.
+            Salão de festas em Porto Alegre para aniversários, casamentos,
+            formaturas, festas infantis e confraternizações.
           </p>
 
           {/* CTAs */}

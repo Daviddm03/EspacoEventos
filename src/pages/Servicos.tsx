@@ -35,7 +35,7 @@ export default function Servicos() {
         <span className="h-1.5 w-1.5 rounded-full bg-primaria" />
 
         <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-branco/70 md:text-xs">
-          Tudo para sua celebração
+          Para o seu evento
         </span>
       </div>
 
@@ -53,7 +53,7 @@ export default function Servicos() {
       </h1>
 
       <p className="hero-description mt-6 max-w-lg text-sm leading-relaxed text-branco/75 md:text-base">
-        Tudo que você precisa para uma festa perfeita em um só lugar.
+        Bar, gastronomia e atrações: conheça as opções disponíveis para compor a sua festa.
       </p>
 
     </div>
@@ -112,8 +112,8 @@ export default function Servicos() {
           </section>
         ))}
       </div>
-      <CtaWhatsapp eyebrow="Vamos conversar" description="Entre em contato e descubra como podemos tornar seu evento ainda mais especial." label="Falar no WhatsApp">
-        Pronto para transformar sua <em className="block">próxima celebração?</em>
+      <CtaWhatsapp eyebrow="Vamos conversar" description="Conte como você imagina o seu evento e consulte as opções que podem fazer parte do orçamento." label="Falar no WhatsApp">
+        Quais serviços combinam <em className="block">com a sua festa?</em>
       </CtaWhatsapp>
     </>
   )

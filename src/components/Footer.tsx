@@ -13,7 +13,7 @@ export default function Footer() {
         <Reveal key={pathname} className="footer-main" stagger={.08} y={16}>
           <div className="footer-brand">
             <Link to="/" aria-label="Espaço Eventos — página inicial"><img src={logo} alt="Espaço Eventos" loading="lazy" decoding="async" width={511} height={95} /></Link>
-            <p>O cenário ideal para transformar cada celebração em um momento único, com elegância, conforto e personalidade.</p>
+            <p>Salão para festas e eventos em Porto Alegre.</p>
           </div>
           <nav aria-label="Navegação do rodapé">
             <h2 className="footer-heading">Explore o espaço</h2>
@@ -36,7 +36,7 @@ export default function Footer() {
         {/* Sempre visível, fora de qualquer Reveal ou ScrollTrigger. */}
         <div className="footer-bottom">
           <p>© {new Date().getFullYear()} Espaço Eventos. Todos os direitos reservados.</p>
-          <p>Feito para celebrar momentos especiais.</p>
+          <p>Acompanhe nossos eventos no Instagram.</p>
         </div>
       </div>
     </footer>

@@ -5,9 +5,9 @@ import CtaWhatsapp from '../components/home/CtaWhatsapp'
 import { imagensGaleria } from '../data/galeria'
 
 const diferenciais = [
-  { titulo: 'Espaço completo', descricao: 'Um ambiente preparado para receber diferentes tipos de celebração, com conforto, estrutura e tudo o que você precisa para aproveitar o momento.' },
-  { titulo: 'Tudo em um só lugar', descricao: 'Do ambiente à decoração, reunimos diferentes serviços para tornar a organização do seu evento mais simples e prática.' },
-  { titulo: 'Momentos personalizados', descricao: 'Cada celebração merece ser única. Por isso, buscamos entender cada evento e criar uma experiência especial para nossos clientes.' },
+  { titulo: 'Mais de 10 anos', descricao: 'Uma trajetória construída recebendo diferentes tipos de festas e celebrações.' },
+  { titulo: 'Gastronomia no espaço', descricao: 'Parte da alimentação dos eventos é preparada no próprio salão, acompanhando de perto cada festa.' },
+  { titulo: 'Presença em cada evento', descricao: 'Uma equipe próxima participa da preparação e da realização das festas no dia a dia do espaço.' },
 ]
 
 export default function Sobre() {
@@ -59,7 +59,7 @@ export default function Sobre() {
       </h1>
 
       <p className="hero-description mt-6 max-w-lg text-sm leading-relaxed text-branco/75 md:text-base">
-        Um espaço criado para transformar celebrações em momentos inesquecíveis.
+        Conheça um pouco da história por trás do Espaço Eventos.
       </p>
 
     </div>
@@ -79,10 +79,10 @@ export default function Sobre() {
       <section className="site-container section-space">
         <Reveal className="about-intro" stagger={.1}>
           <div>
-            <p className="eyebrow mb-6">Mais que um espaço</p>
-            <h2 className="section-heading">Um lugar para criar <em className="block">grandes momentos.</em></h2>
+            <p className="eyebrow mb-6">Onde estamos</p>
+            <h2 className="section-heading">Em Porto Alegre, <em className="block">um espaço para celebrar.</em></h2>
           </div>
-          <p className="body-copy">O Espaço Eventos foi pensado para ser o cenário perfeito para celebrar momentos que merecem ser lembrados. Um ambiente acolhedor e versátil, preparado para receber diferentes tipos de eventos com conforto, personalidade e atenção a cada detalhe.</p>
+          <p className="body-copy">Estamos na Av. Professor Oscar Pereira, 1549, em Porto Alegre. Na galeria, você pode conhecer os ambientes e ver registros de festas realizadas no espaço.</p>
         </Reveal>
         <Reveal><figure className="about-feature">
           <div className="photo-frame about-photo"><VenueImage src={imagensGaleria[0].src} alt="Espaço para eventos" sizes="100vw" /></div>
@@ -94,16 +94,16 @@ export default function Sobre() {
           <Reveal><div className="photo-frame"><VenueImage src={imagensGaleria[4].src} alt="Celebração no Espaço Eventos" /></div></Reveal>
           <Reveal>
             <p className="eyebrow mb-6">Nossa história</p>
-            <h2 className="section-heading mb-8">Um espaço criado <em className="block">para celebrar.</em></h2>
-            <p className="body-copy">O Espaço Eventos nasceu do desejo de criar um ambiente onde cada celebração pudesse ser vivida de forma especial. Desde o início, nosso propósito foi oferecer um espaço acolhedor, elegante e preparado para receber momentos importantes ao lado de quem realmente importa.</p>
-            <p className="body-copy">Ao longo dos anos, o espaço foi evoluindo para acompanhar as necessidades de cada evento, reunindo estrutura, conforto e diferentes possibilidades de personalização. Hoje, continuamos com o mesmo propósito: transformar cada celebração em uma experiência única e inesquecível.</p>
+            <h2 className="section-heading mb-8">Mais de 10 anos <em className="block">de celebrações.</em></h2>
+            <p className="body-copy">Há mais de uma década, o Espaço Eventos recebe aniversários, casamentos, formaturas e outras comemorações em Porto Alegre.</p>
+            <p className="body-copy">Somos um negócio familiar, construído por pessoas que acompanham de perto o dia a dia do salão e participam da preparação de cada evento. Essa presença continua fazendo parte da forma como trabalhamos até hoje.</p>
           </Reveal>
         </div>
       </section>
       <section className="site-container section-space">
         <Reveal>
-          <p className="eyebrow mb-6">O que nos diferencia</p>
-          <h2 className="section-heading">Mais que um espaço, <em>uma experiência.</em></h2>
+          <p className="eyebrow mb-6">O nosso jeito de fazer</p>
+          <h2 className="section-heading">Uma história construída <em>de perto.</em></h2>
         </Reveal>
         <Reveal className="values-list" stagger={.12} y={32}>
           {diferenciais.map((item, index) => <div key={item.titulo} className="value-row">
@@ -113,8 +113,8 @@ export default function Sobre() {
           </div>)}
         </Reveal>
       </section>
-      <CtaWhatsapp description="Entre em contato e descubra como podemos tornar seu evento ainda mais especial." label="Falar no WhatsApp">
-        Pronto para criar <em className="block">momentos inesquecíveis?</em>
+      <CtaWhatsapp description="Conte o que você está planejando e tire suas dúvidas sobre o espaço, os serviços e a disponibilidade." label="Falar no WhatsApp">
+        Vamos conversar sobre <em className="block">a sua festa?</em>
       </CtaWhatsapp>
     </>
   )

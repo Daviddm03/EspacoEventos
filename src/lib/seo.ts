@@ -16,7 +16,7 @@ export const SEO_PAGES = [
   {
     path: '/galeria',
     title: 'Galeria | Espaço Eventos em Porto Alegre',
-    description: 'Explore a galeria do Espaço Eventos em Porto Alegre, com imagens organizadas por espaço, eventos, decoração e totem de fotos.',
+    description: 'Veja fotos do salão, dos eventos e da decoração do Espaço Eventos em Porto Alegre.',
   },
   {
     path: '/servicos',
@@ -26,7 +26,7 @@ export const SEO_PAGES = [
   {
     path: '/sobre',
     title: 'Sobre o Espaço Eventos | Festas em Porto Alegre',
-    description: 'Saiba mais sobre o Espaço Eventos, seu ambiente e sua proposta para festas e celebrações na Av. Professor Oscar Pereira, 1549, em Porto Alegre.',
+    description: 'Conheça a origem familiar do Espaço Eventos e a equipe que participa da preparação e da realização das festas em Porto Alegre.',
   },
 ] as const
 

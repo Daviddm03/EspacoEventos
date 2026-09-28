@@ -11,9 +11,9 @@ export default function ServicosResumo() {
         <Reveal className="section-intro" stagger={.1}>
           <div>
             <p className="eyebrow">O espaço. As possibilidades.</p>
-            <h2 id="servicos-heading" className="section-heading">Tudo para tornar sua <em>celebração inesquecível</em></h2>
+            <h2 id="servicos-heading" className="section-heading">Tudo para <em>a sua festa</em></h2>
           </div>
-          <p className="body-copy">Um espaço completo para celebrar momentos especiais, pensado para receber você, sua família e seus convidados.</p>
+          <p className="body-copy">Conheça os serviços e experiências que você pode incluir no seu evento.</p>
         </Reveal>
         <Reveal className="service-summary-grid" stagger={.07}>
           {servicos.map((servico, index) => (

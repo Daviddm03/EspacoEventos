@@ -12,8 +12,8 @@ export default function GaleriaResumo() {
       <div className="site-container">
         <Reveal className="section-intro" stagger={.1}>
           <div>
-            <p className="eyebrow">Momentos especiais</p>
-            <h2 id="galeria-heading" className="section-heading">Um olhar sobre <em className="block">a celebração.</em></h2>
+            <p className="eyebrow">Galeria</p>
+            <h2 id="galeria-heading" className="section-heading">Veja o salão <em className="block">em festa.</em></h2>
           </div>
           <div className="md:justify-self-end"><Link to="/galeria" className="editorial-link">Explorar a galeria <ArrowUpRight aria-hidden="true" /></Link></div>
         </Reveal>

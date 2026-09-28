@@ -21,11 +21,11 @@ export default function CtaWhatsapp({
   eyebrow = 'Vamos celebrar',
   children = (
     <>
-      Pronto para fazer uma <em className="block">festa incrível?</em>
+      Vamos planejar sua <em className="block">próxima festa?</em>
     </>
   ),
-  description = 'Entre em contato agora pelo WhatsApp e receba um orçamento personalizado para o seu evento.',
-  label = 'Solicitar Orçamento',
+  description = 'Conte um pouco sobre o seu evento e descubra as opções para a sua data.',
+  label = 'Solicitar orçamento',
 }: CtaWhatsappProps) {
   return (
     <section
@@ -84,7 +84,7 @@ export default function CtaWhatsapp({
 
           <Reveal y={18} delay={0.24}>
             <p className="contact-note">
-              Seu próximo momento começa aqui.
+              Consulte a disponibilidade para sua data.
             </p>
           </Reveal>
         </div>
