@@ -1,146 +1,75 @@
 # Espaço Eventos
 
-A modern and responsive website built for **Espaço Eventos**, a family-owned event venue based in Porto Alegre, Brazil.
+A responsive website built for Espaço Eventos, a family-owned event venue in Porto Alegre, Brazil.
 
-The website showcases the venue, services, event gallery, and business information while providing a clear conversion path through WhatsApp for inquiries and event quotations.
+The website presents the venue, services, gallery, and business information while giving visitors a direct way to request information and quotations through WhatsApp.
 
-## Overview
+## About
 
-This project was built as a real-world production website, with a strong focus on visual experience, responsive design, accessibility, performance, and maintainable frontend architecture.
+This project was built for a real event venue.
 
-The interface combines an editorial visual style with immersive photography, video backgrounds, subtle animations, and responsive interactions across desktop and mobile devices.
+The main goal was to create a modern website where potential clients could understand the space, explore previous events, see the available services, and easily contact the business.
 
-## Tech Stack
-
-- **React 19**
-- **TypeScript**
-- **Vite**
-- **React Router**
-- **Tailwind CSS**
-- **GSAP**
-- **Lucide React**
-- **Bootstrap Icons**
+The site is built as a React single-page application with multiple routes and responsive layouts for desktop and mobile devices.
 
 ## Pages
 
-- **Home** — `/`
-- **Gallery** — `/galeria`
-- **Services** — `/servicos`
-- **About** — `/sobre`
-- **404** — Custom fallback page for unknown routes
+```text
+/           Home
+/galeria    Gallery
+/servicos   Services
+/sobre      About
+```
 
-## Key Features
+A custom 404 page handles unknown routes.
 
-### Responsive Experience
+## Features
 
-The interface is designed for desktop, tablet, and mobile devices, with responsive navigation, layouts, typography, media, and interactions.
-
-### Interactive Gallery
-
-The gallery includes:
-
-- Category-based filtering
-- Responsive image layouts
-- Full-screen lightbox
-- Keyboard navigation
-- Focus management
-- Escape-key support
-
-### Video Experiences
-
-Multiple sections use video content with playback behavior designed around:
-
-- Viewport visibility
-- Browser tab visibility
-- Reduced-motion preferences
-- Mobile browser restrictions
-- Graceful playback fallback
-
-### Animations
-
-GSAP is used for subtle reveal animations and transitions while respecting the user's `prefers-reduced-motion` accessibility preference.
-
-### Accessibility
-
-Accessibility considerations include:
-
-- Semantic HTML
-- Keyboard navigation
-- Visible focus states
-- Focus trapping in interactive overlays
-- Focus restoration
-- Skip navigation
+- Responsive navigation and layouts
+- Event and venue gallery
+- Category-based gallery filtering
+- Full-screen image lightbox
+- Keyboard-accessible interactions
+- WhatsApp contact flow
+- Video sections
+- GSAP reveal animations
 - Reduced-motion support
-- Accessible menu and lightbox interactions
-
-### Performance
-
-The project includes several performance optimizations:
-
-- Local images converted to WebP
-- Responsive image handling
-- Lazy loading
-- Asynchronous image decoding
-- Optimized production assets
-- Vite production builds
-
-### SEO
-
-The website includes:
-
-- Route-specific page titles and descriptions
-- Canonical URL support
+- Route-specific metadata
 - Open Graph metadata
 - Structured data
-- `robots.txt`
-- Sitemap support
-- Semantic heading structure
-- Custom 404 metadata
+- Sitemap and robots configuration
+- Custom favicon and web app icons
+- Responsive and optimized WebP images
+- Custom 404 page
 
-The production domain can be configured through `SITE_URL` in:
+## Tech Stack
 
-```text
-src/lib/seo.ts
-```
-
-### Browser Identity
-
-The project includes a complete browser identity setup with:
-
-- Favicon
-- Multiple favicon sizes
-- Apple Touch Icon
-- 192×192 and 512×512 icons
-- Web App Manifest
-- Browser theme color
-
-## Project Structure
-
-```text
-src/
-├── components/
-│   └── home/
-├── data/
-├── hooks/
-├── lib/
-├── pages/
-└── assets/
-
-public/
-├── fotos/
-├── videos/
-├── favicon.ico
-├── apple-touch-icon.png
-└── site.webmanifest
-```
+- React
+- TypeScript
+- Vite
+- React Router
+- Tailwind CSS
+- GSAP
+- Lucide React
+- Bootstrap Icons
 
 ## Getting Started
 
-Clone the repository and install the dependencies:
+### Requirements
+
+- Node.js
+- npm
+
+Clone the repository:
 
 ```bash
-git clone https://github.com/Daviddm03/EspacoEventos.git
+git clone git@github.com:Daviddm03/EspacoEventos.git
 cd EspacoEventos
+```
+
+Install the dependencies:
+
+```bash
 npm install
 ```
 
@@ -150,29 +79,32 @@ Start the development server:
 npm run dev
 ```
 
-## Validation
+Vite will provide the local development address in the terminal.
 
-Run the project's quality checks:
+## Available Commands
+
+Development:
+
+```bash
+npm run dev
+```
+
+Lint the project:
 
 ```bash
 npm run lint
-npm run check:types
-npm audit
-npm run build
 ```
 
-## Production Build
+Check TypeScript:
+
+```bash
+npm run check:types
+```
 
 Create a production build:
 
 ```bash
 npm run build
-```
-
-The generated production files are placed in:
-
-```text
-dist/
 ```
 
 Preview the production build locally:
@@ -181,25 +113,69 @@ Preview the production build locally:
 npm run preview
 ```
 
-## Deployment
-
-The project is configured for deployment on **Vercel**.
-
-The `vercel.json` configuration provides SPA route fallback so React Router routes can be accessed directly without returning a server-level 404.
-
-Production configuration:
+## Project Structure
 
 ```text
-Build command: npm run build
-Output directory: dist
+src/
+├── components/
+│   └── home/
+├── data/
+├── lib/
+├── pages/
+├── App.tsx
+├── index.css
+└── main.tsx
+
+public/
+├── fotos/
+├── videos/
+├── favicon.ico
+├── apple-touch-icon.png
+└── site.webmanifest
 ```
 
-## Project Status
+The content used by the gallery, services, and testimonials is separated into files inside `src/data`, while reusable interface elements live in `src/components`.
 
-The core website is complete.
+## Accessibility & Performance
 
-Remaining production tasks include final domain configuration, production SEO URLs, analytics integration, Search Console setup, and final media updates.
+Accessibility was considered throughout the interface with keyboard navigation, visible focus states, semantic HTML, reduced-motion support, focus management, and accessible overlays.
 
----
+Images are served primarily as WebP files, non-critical media is loaded when needed, and the production build is generated through Vite.
 
-Built as a real-world frontend project with a focus on user experience, accessibility, performance, and maintainable code.
+## SEO
+
+The website includes route-specific titles and descriptions, canonical URLs, Open Graph metadata, structured data, sitemap support, and semantic heading structure.
+
+The production domain can be configured in:
+
+```text
+src/lib/seo.ts
+```
+
+## Deployment
+
+The project includes a `vercel.json` configuration for deployment on Vercel and SPA routing support.
+
+Create the production build with:
+
+```bash
+npm run build
+```
+
+The generated files are placed in:
+
+```text
+dist/
+```
+
+## What I Learned
+
+This was one of my first projects built for a real use case rather than an exercise.
+
+Beyond building the interface, I had to think about responsive behavior, accessibility, performance, SEO, media optimization, navigation, and how visitors would move from discovering the venue to contacting the business.
+
+It also gave me more experience organizing a React and TypeScript project as it grew beyond a single page.
+
+## Tech
+
+React · TypeScript · Vite · Tailwind CSS · GSAP
